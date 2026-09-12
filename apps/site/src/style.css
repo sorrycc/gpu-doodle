@@ -1,0 +1,272 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f7f5ef;
+  --paper: #ffffff;
+  --ink: #16161a;
+  --muted: #6b6b73;
+  --line: #e2ded4;
+  --accent: #ffd23f;
+  --accent-ink: #3a2e00;
+  --bar: #ffe27a;
+  --ok: #1f8a4c;
+  --warn: #b3261e;
+  font-family:
+    ui-sans-serif,
+    -apple-system,
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    "Noto Sans CJK SC",
+    sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131316;
+    --paper: #1d1d22;
+    --ink: #f2f2f0;
+    --muted: #9a9aa3;
+    --line: #2d2d34;
+    --bar: #5c4a00;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  padding: 0 16px 48px;
+}
+
+a {
+  color: inherit;
+}
+
+.hero {
+  max-width: 960px;
+  margin: 40px auto 24px;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 40em;
+}
+
+.layout {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.pad {
+  min-width: 0;
+}
+
+#pad {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  cursor: crosshair;
+  --ink: var(--ink);
+}
+
+.tools,
+.game-tools {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.count {
+  margin-left: auto;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+button {
+  font: inherit;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+button.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.panel {
+  min-width: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.game {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.prompt {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.prompt strong {
+  font-size: 1.6rem;
+  margin: 0 6px;
+}
+
+.prompt .en {
+  color: var(--muted);
+}
+
+.game-meta {
+  display: flex;
+  gap: 16px;
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.status {
+  margin: 8px 0 0;
+  min-height: 1.5em;
+  font-weight: 600;
+}
+
+.game[data-phase="solved"] .status {
+  color: var(--ok);
+}
+
+.game[data-phase="timeout"] .status {
+  color: var(--warn);
+}
+
+.headline {
+  margin: 0 0 12px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  min-height: 1.3em;
+}
+
+.guesses {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.guesses li {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.guesses .bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--bar);
+  transition: width 120ms ease-out;
+}
+
+.guesses .label,
+.guesses .percent {
+  position: relative;
+}
+
+.guesses .percent {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.guesses li:first-child .label {
+  font-weight: 600;
+}
+
+.timeline {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  min-height: 1.4em;
+}
+
+.meta {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.labels {
+  max-width: 960px;
+  margin: 32px auto 0;
+  color: var(--muted);
+}
+
+.labels ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding: 8px 0 0;
+  margin: 0;
+  list-style: none;
+}
+
+footer {
+  max-width: 960px;
+  margin: 40px auto 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 4px 0;
+}

@@ -163,7 +163,14 @@ Chrome 148.0.7778.179，Apple Silicon。GPU 时间含上传、dispatch 与回读
 
 ## 站点
 
-Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，每次抬笔调用一次 classify，显示 top-3 和概率条，类别名中英双语。加一个「随机题目」按钮：给一个词让用户画，猜中就下一题，这是原版 Quick Draw 的传播形态。页脚署名 Google Quick Draw 数据集。
+Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，显示 top-5 和概率条，类别名中英双语。加一个「随机题目」按钮：给一个词让用户画，猜中就下一题，这是原版 Quick Draw 的传播形态。页脚署名 Google Quick Draw 数据集。
+
+实现细节（阶段 6）：
+
+- 笔画在 pointermove 时也送去分类，按 requestAnimationFrame 合并请求，落后的结果按 ticket 丢弃；抬笔的结果按笔数记进「第 N 笔猜什么」时间线，不受 ticket 影响。
+- 页面优先用 `defineClassifier({ backend: "webgpu" })`，没有 WebGPU 或设备丢失时切回同步的 `classify`，并在页面上写明当前后端和每次推理的毫秒数。单张图 CPU 本来更快，demo 仍走 GPU 是为了展示 kernel。
+- 题目模式：20 秒倒计时，top-1 等于题目即算猜中，显示用了几笔几秒，1.4 秒后自动下一题；超时显示答案。
+- `vite.config.ts` 把 `gpu-doodle` 别名到 `packages/core/src/index.ts`，阶段 7 产出 dist 之前站点直接跑源码。
 
 ## 分阶段
 
@@ -172,7 +179,7 @@ Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，每次抬笔调�
 3. model.py、train.py、dataset.py，跑通一次 5 epoch 看曲线。已完成，结果见 `packages/training/runs/stage3-baseline/report.json`。
 4. export.py、cpu.ts、decode.ts，CPU 与 PyTorch parity。已完成，见下。
 5. kernel.wgsl、gpu.ts、test:browser。已完成，见上。
-6. 站点 demo。
+6. 站点 demo。已完成：`apps/site`，Vite + 原生 TS，画板、边画边猜、20 秒随机题目模式、中英双语标签、WebGPU 优先并在设备丢失时切回 CPU。`pnpm site:smoke` 在无头 Chrome 里画一个圆并要求出现猜测列表。
 7. size:gate、CI、README、MODEL_CARD。
 
 每阶段结束都能独立验证，第 3 阶段结束就能知道这个模型规模够不够。

@@ -35,4 +35,13 @@ classifier.dispose();
 
 `pnpm test:browser` checks the WGSL kernel against the CPU reference on 10,000 test sketches in headless Chrome and against PyTorch logits on 512 of them.
 
-Stages done: workspace and data (1), shared preprocessing with a parity test against Google's simplified output (2), model and training loop (3), int6 export with a gated promotion and a CPU reference checked against PyTorch logits (4), the WGSL kernel with browser parity and backend selection (5). The site and the size gate follow.
+## Demo
+
+```sh
+pnpm site:dev      # Vite dev server for apps/site
+pnpm site:smoke    # headless Chrome: draw a circle, expect a ranked guess list
+```
+
+The page draws on a canvas, guesses while you draw, and has a prompt mode in the spirit of the original Quick, Draw!: twenty seconds to draw a named category, next round when the top guess matches. It runs the WebGPU kernel when the browser has one and falls back to the CPU path otherwise.
+
+Stages done: workspace and data (1), shared preprocessing with a parity test against Google's simplified output (2), model and training loop (3), int6 export with a gated promotion and a CPU reference checked against PyTorch logits (4), the WGSL kernel with browser parity and backend selection (5), the site (6). The package build and size gate follow.

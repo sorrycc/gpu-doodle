@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>gpu-doodle · 你画我猜</title>
+    <meta
+      name="description"
+      content="一个几万参数的小模型在你的浏览器里边画边猜。WebGPU 推理，不上传任何数据。"
+    />
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>gpu-doodle</h1>
+      <p>
+        画点什么，一个两万多参数的小模型在你的浏览器里边画边猜。 推理跑在 WebGPU
+        上，笔画不离开这台设备。
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="pad">
+        <canvas id="pad" aria-label="画板"></canvas>
+        <div class="tools">
+          <button id="undo" type="button">撤销一笔</button>
+          <button id="clear" type="button">清空</button>
+          <span id="strokes" class="count">0 笔</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div id="game" class="game">
+          <div class="game-idle">
+            <button id="play" type="button" class="primary">
+              来一题，20 秒内画出它
+            </button>
+          </div>
+          <div class="game-live" hidden>
+            <p class="prompt">
+              请画 <strong id="target-zh"></strong>
+              <span id="target-en" class="en"></span>
+            </p>
+            <p class="game-meta">
+              <span id="countdown">20.0 s</span>
+              <span id="score">猜中 0 / 0</span>
+            </p>
+            <p id="game-status" class="status"></p>
+            <div class="game-tools">
+              <button id="skip" type="button">跳过</button>
+              <button id="stop" type="button">结束</button>
+            </div>
+          </div>
+        </div>
+
+        <p id="headline" class="headline">在画板上画点什么</p>
+        <ol id="guesses" class="guesses"></ol>
+        <p id="timeline" class="timeline"></p>
+        <p class="meta">
+          <span id="backend">正在初始化模型…</span>
+          <span id="timing"></span>
+        </p>
+      </section>
+    </main>
+
+    <details class="labels">
+      <summary>它认识的 30 样东西</summary>
+      <ul id="labels"></ul>
+    </details>
+
+    <footer>
+      <p>
+        训练数据来自 Google 的
+        <a href="https://github.com/googlecreativelab/quickdraw-dataset"
+          >Quick, Draw! 数据集</a
+        >（CC BY 4.0）。模型只见过这 30 类，画别的它也会硬猜一个。
+      </p>
+      <p>
+        代码与模型：gpu-doodle，MIT。配方来自
+        <a href="https://github.com/arikchakma/gpu-time">gpu-time</a> 与
+        <a href="https://github.com/vercel-labs/gpu-lexer">gpu-lexer</a>。
+      </p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

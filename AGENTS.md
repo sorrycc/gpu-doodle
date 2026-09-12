@@ -6,7 +6,7 @@
 
 - `packages/core` — the publishable `gpu-doodle` package. `preprocess.ts` (shared by browser and training), `labels.ts`, WGSL kernel, CPU reference, build, and unit tests. **Zero runtime dependencies; keep it that way.**
 - `packages/training` — `torch/` for Python (uv project, Python 3.13), `data/` for the class list, the download manifest, `simplified/` (ignored ndjson prefixes) and `synth/` (ignored featurized splits), `active/` for the promoted export report and parity fixtures, `runs/` for training history (only `report.json` and `source/` snapshots are tracked, never `.pt`).
-- `apps/site` — the Vite demo: a canvas, guess-while-drawing, top-3 probabilities.
+- `apps/site` — the Vite demo: a canvas, guess-while-drawing, top-5 probabilities, a twenty-second prompt mode. Plain TypeScript, no framework. Chinese UI with English category names beside the Chinese ones.
 
 ## Validation
 
@@ -20,6 +20,8 @@ pnpm test           # core unit tests (preprocess parity, CPU vs PyTorch parity,
 pnpm build:core     # emits packages/core/dist
 pnpm size:gate      # strict 50,000-byte Brotli release limit
 pnpm test:browser   # headless Chrome: WebGPU vs CPU on 10,000 test sketches, vs PyTorch on 512, device recovery, backend selection
+pnpm site:dev       # Vite dev server for apps/site; `gpu-doodle` is aliased to packages/core/src until the package build exists
+pnpm site:smoke     # headless Chrome: load the demo, draw a circle, require a guess list and no console errors
 ```
 
 Python is always invoked through `uv`. Node 24+ runs TypeScript directly via `--experimental-strip-types`; relative imports in scripts run this way must use explicit `.ts` extensions. Scripts that import `packages/core/src` run under `tsx`.

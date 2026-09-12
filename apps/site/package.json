@@ -4,10 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "echo 'site: stage 6' && exit 0",
-    "check": "echo 'site: stage 6' && exit 0"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "tsc --noEmit",
+    "test:smoke": "node tests/smoke.mjs"
   },
   "dependencies": {
     "gpu-doodle": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.3",
+    "@webgpu/types": "0.1.72",
+    "playwright": "1.63.0",
+    "typescript": "5.9.3",
+    "vite": "7.3.6"
   }
 }
