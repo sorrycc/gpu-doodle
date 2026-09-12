@@ -93,13 +93,18 @@ head 128 → 64 tanh → 30 logits
 
 ## 预处理一致性（最容易出错的地方）
 
-训练数据 npz 已经是 Quick Draw 官方流程的产物：对齐左上、最长边缩到 255、1 像素重采样、RDP ε=2。浏览器的 pointer 事件必须走完全相同的流程，否则模型看到的分布不一样。
+Quick Draw 官方的 `full/simplified` 数据是四步流程的产物：对齐左上、最长边缩到 255、1 像素重采样、RDP ε=2。浏览器的 pointer 事件必须走完全相同的流程，否则模型看到的分布不一样。
 
 做法：
 
-1. `preprocess.ts` 实现上述四步，输出 stroke-3。
-2. Python `dataset.py` 只做 npz 之后的归一化（除以 255、bucket、pad），不再碰几何。
-3. 一致性测试：下载 full/raw/cat.ndjson 的前 200 条（原始点，未简化）和 full/simplified/cat.ndjson 的同 key_id 记录，TS 预处理 raw 后与 simplified 逐点比较。允许 RDP 浮点差异 1 像素。
+1. `preprocess.ts` 实现上述四步，输出 stroke-3。已完成（阶段 2）。
+2. Python `dataset.py` 只做几何之后的归一化（除以 255、bucket、pad），不再碰几何。
+3. 一致性测试：`packages/core/test/fixtures/quickdraw-cat-parity.json` 保存 120 对同 key_id 的 raw 与 simplified 记录（`pnpm --filter gpu-doodle fixture:parity` 重新抓取），TS 预处理 raw 后与 simplified 逐点比较。已完成：120 对中 116 对点数一致、104 对逐点相同、109 对偏差不超过 1 像素；在 1,433 对上为 98%、90%、93%，剩余差异是 RDP 与重采样的浮点临界情况。
+
+**阶段 2 的发现，影响阶段 3 的数据选择。** 阶段 1 下载的 `sketchrnn/<class>.npz` 不是 simplified 数据的 stroke-3 版本。用 raw 数据核对（400 条中 221 条命中），npz 的几何是：原始设备坐标、不对齐、不缩放、不重采样，直接在原始尺度上做 RDP ε=2，再丢掉第一个点、以第一个点为原点做差分。它的坐标范围随采集设备变化（5000 条 cat 的最大跨度中位数 341，最大 1459），与浏览器管线不一致，也没有尺度不变性。阶段 3 二选一：
+
+- （推荐）换用 `full/simplified/<class>.ndjson` 作为训练数据（每类约 50 到 80 MB，可只取文件前缀），Python 侧只做 `toStroke3` 同款差分，几何完全由 `preprocess.ts` 定义，parity 测试才有意义。需要自己按 key_id 哈希切分，并过滤 `recognized`。
+- 保留 npz，则浏览器管线要改成「原始尺度 RDP + 每张归一化」，且归一化必须在 Python 侧重复实现，违反「几何只在 TS」的规则。
 
 ## 数据
 
@@ -128,7 +133,7 @@ Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，每次抬笔调�
 ## 分阶段
 
 1. 骨架：monorepo、AGENTS.md、gitignore、CI 占位、fetch.py 下载 30 类。
-2. preprocess.ts 与一致性测试。
+2. preprocess.ts 与一致性测试。已完成。
 3. model.py、train.py、dataset.py，跑通一次 5 epoch 看曲线。
 4. export.py、cpu.ts、decode.ts，CPU 与 PyTorch parity。
 5. kernel.wgsl、gpu.ts、test:browser。

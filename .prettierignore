@@ -4,3 +4,4 @@ node_modules
 packages/training/data
 packages/training/runs
 packages/training/active
+packages/core/test/fixtures

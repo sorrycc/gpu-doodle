@@ -21,6 +21,7 @@
     "build": "echo 'build: stage 4' && exit 0",
     "build:release": "echo 'size gate: stage 7' && exit 0",
     "test": "vitest run --passWithNoTests",
+    "fixture:parity": "node --experimental-strip-types scripts/fetch-parity-fixture.ts cat 120",
     "test:browser": "echo 'browser parity: stage 5' && exit 0",
     "check": "tsc --noEmit"
   },
