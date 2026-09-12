@@ -8,7 +8,7 @@ The first 20 MB of Google's `full/simplified/<class>.ndjson` from the Quick, Dra
 
 These files are the output of the geometry that `packages/core/src/preprocess.ts` reproduces (align top-left, scale the larger extent to 255, resample at 1 px, RDP epsilon 2.0). Training reads them without touching geometry, so the browser and the model share one coordinate space. The parity test in `packages/core/test/preprocess.test.ts` is what makes that claim checkable.
 
-**A file prefix is not a random sample of the class.** Google's files are ordered by collection time, so the prefix is roughly the earliest 15,000 sketches per class. Numbers quoted from this data describe that sample.
+**A file prefix is not a random sample of the class.** Google's files are ordered by collection time, so the prefix is roughly the earliest 24,000 to 71,000 sketches per class (simplified records are small). Numbers quoted from this data describe that sample. The 100-class list adds 70 categories to the original 30, chosen to avoid silhouettes the first model already confused (no second bird, no second cup, no second car); the per-class imbalance in the prefixes is up to 3.4×.
 
 `manifest.json` records the URL, requested and actual bytes, sha256, record and recognized counts, and retrieval date of every file. `fetch.py` refuses to overwrite a file whose digest no longer matches; update the pin deliberately with `--update-pins`.
 

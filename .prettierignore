@@ -6,3 +6,4 @@ packages/training/runs
 packages/training/active
 packages/core/test/fixtures
 packages/core/src/model/weights.gen.ts
+packages/training/exports/

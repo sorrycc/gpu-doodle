@@ -183,3 +183,22 @@ Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，显示 top-5 和
 7. size:gate、CI、README、MODEL_CARD。已完成：`packages/core/scripts/build.ts`（esbuild 打包、wgslender 压缩 kernel、terser、声明文件、size.json），发布入口 22,238 字节 Brotli，门禁 50,000；`check-package.ts` 打包后装进临时消费者做类型检查和一次分类；站点改为消费 `dist`；CI 跑 build、check、core 测试、包检查、体积门禁、站点构建；`MODEL_CARD.md` 记录已发布模型的来源、指标与局限。
 
 每阶段结束都能独立验证，第 3 阶段结束就能知道这个模型规模够不够。
+
+## 扩展到 100 类（c100-v1）
+
+在 30 类的基础上加 70 类，挑选时避开第一版已经混淆的轮廓（不再加第二种鸟、杯子、车）。数据仍是每类 20 MB 的 `full/simplified` 前缀，100 类共 1.9 GB、4,428,877 条记录，过滤后 train / valid / test 为 3,726,793 / 206,276 / 207,034，每类训练样本 18,077 到 60,973，不均衡 3.4 倍，未做重采样。模型结构不变，只有输出头从 30 变 100，参数 27,742 → 32,292。
+
+训练 20 epoch，第 15 epoch 起 QAT，MPS 上每 epoch 约 380 秒，共 7,442 秒，第 19 epoch 最好。导出门禁因「shipped weights were trained on a different class list」拒绝，按设计用 `--force` 覆盖并记录在报告里；此后的 100 类导出自动对着它做门禁。
+
+| 指标                        | 30 类（stage3-baseline，5 epoch） | 100 类（c100-v1，20 epoch） |
+| --------------------------- | --------------------------------- | --------------------------- |
+| test top-1 / top-3          | 93.6% / 98.7%                     | 89.4% / 97.1%               |
+| valid top-1 前 1 / 2 / 3 笔 | 45.0 / 68.4 / 81.1%               | 31.3 / 54.5 / 69.8%         |
+| 参数 / int6 打包字节        | 27,742 / 20,807                   | 32,292 / 24,219             |
+| 发布入口 Brotli             | 22,238 B                          | 26,185 B（门禁 50,000）     |
+| WebGPU 对 CPU，10,000 张    | 0 不一致，误差 6.4e-6             | 0 不一致，误差 1.0e-5       |
+| 10,000 张 GPU / CPU         | 137 / 5,760 ms                    | 165 / 5,167 ms              |
+
+最差五类：dog 57.5%、frog 63.2%、bird 67.0%、whale 75.8%、cat 76.8%。最大混淆：hammer↔axe（208 + 199）、dog→elephant（154）、whale→fish（144）、light bulb→hot air balloon（131）。hammer 与 axe 是这批新增里唯一没避开的近似对，下一版可以换掉其中一个。
+
+`test/browser.ts` 原本写死读 `data/synth/default`，改为按导出报告里 test 语料的 sha256 在 `data/synth/*` 里找匹配的 split，否则 30 类的标签空间会让浏览器测试的 top-1 失真（GPU 与 CPU 的一致性本身不受影响）。

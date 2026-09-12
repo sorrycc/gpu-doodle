@@ -135,7 +135,7 @@ describe("CPU reference", () => {
     );
     expect(guesses[0].index).toBe(labels[0]);
     expect(guesses[0].label).toBe(LABELS[labels[0]]);
-    const total = classifyStroke3(slice, { topK: 30 }).reduce(
+    const total = classifyStroke3(slice, { topK: LABELS.length }).reduce(
       (sum, guess) => sum + guess.probability,
       0,
     );

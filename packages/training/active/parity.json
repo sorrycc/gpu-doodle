@@ -2,12 +2,12 @@
   "prefix": "active/parity",
   "sequences": 512,
   "points": 18364,
-  "classes": 30,
+  "classes": 100,
   "format": {
     "rows": "int16[3] dx dy penLift, concatenated",
     "offsets": "uint32, sequences + 1",
     "labels": "uint8",
     "logits": "float32[classes] per sequence"
   },
-  "argmaxAgreement": 0.9453125
+  "argmaxAgreement": 0.888671875
 }

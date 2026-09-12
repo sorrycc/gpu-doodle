@@ -1,6 +1,6 @@
 # gpu-doodle
 
-A compact neural doodle classifier for the browser. A 27,742-parameter sequence model reads pen strokes and ranks 30 [Quick, Draw!](https://github.com/googlecreativelab/quickdraw-dataset) categories, on the CPU for a single drawing and on WebGPU for batches. Zero runtime dependencies; the WGSL kernel and the int6 weights are inlined in one ES module.
+A compact neural doodle classifier for the browser. A 27,742-parameter sequence model reads pen strokes and ranks 100 [Quick, Draw!](https://github.com/googlecreativelab/quickdraw-dataset) categories, on the CPU for a single drawing and on WebGPU for batches. Zero runtime dependencies; the WGSL kernel and the int6 weights are inlined in one ES module.
 
 ```ts
 import { classify } from "gpu-doodle";

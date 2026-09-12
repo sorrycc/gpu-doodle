@@ -1,485 +1,1185 @@
 {
-  "checkpoint": "runs/stage3-baseline/best.pt",
-  "checkpointSha256": "2108836776fe4b21445407c3087558ebcd13326cc796c83e1e412bb968e94183",
-  "artifactSha256": "0d4f8a7796370fe6102c3b45e1c29787ffb757ce3f1ccde3562eaaed2562b1c6",
-  "epoch": 5,
-  "pointsSeenAtCheckpoint": 222156430,
+  "checkpoint": "runs/c100-v1/best.pt",
+  "checkpointSha256": "2b8b297437fea76e55ba49b0f2f51e84147d81c2ec8c96155613a147e712e326",
+  "artifactSha256": "79ed75e801a4f66d68613f7f73739ec303388685180ab39da736ca1b67cf0436",
+  "epoch": 19,
+  "pointsSeenAtCheckpoint": 2800278919,
   "lineage": [
     {
-      "checkpoint": "runs/stage3-baseline/best.pt",
-      "sha256": "2108836776fe4b21445407c3087558ebcd13326cc796c83e1e412bb968e94183",
-      "epoch": 5,
-      "pointsSeen": 222156430
+      "checkpoint": "runs/c100-v1/best.pt",
+      "sha256": "2b8b297437fea76e55ba49b0f2f51e84147d81c2ec8c96155613a147e712e326",
+      "epoch": 19,
+      "pointsSeen": 2800278919
     }
   ],
   "classes": [
     "airplane",
     "apple",
+    "axe",
+    "backpack",
     "banana",
+    "basketball",
+    "bed",
+    "bee",
     "bicycle",
     "bird",
+    "birthday cake",
     "book",
+    "bridge",
     "butterfly",
+    "cactus",
+    "camera",
+    "campfire",
+    "candle",
     "car",
+    "carrot",
+    "castle",
     "cat",
+    "chair",
     "clock",
     "cloud",
+    "crown",
     "cup",
     "dog",
+    "donut",
+    "drums",
     "elephant",
     "eye",
+    "eyeglasses",
+    "face",
+    "fence",
     "fish",
     "flower",
+    "fork",
+    "frog",
+    "giraffe",
+    "grapes",
     "guitar",
+    "hamburger",
+    "hammer",
+    "hand",
+    "headphones",
+    "helicopter",
+    "hot air balloon",
+    "hourglass",
     "house",
+    "ice cream",
     "key",
+    "knife",
+    "ladder",
+    "laptop",
+    "leaf",
+    "light bulb",
+    "lighthouse",
     "lightning",
+    "lollipop",
     "moon",
     "mountain",
+    "mushroom",
+    "octopus",
+    "pencil",
+    "piano",
+    "pig",
+    "pineapple",
     "pizza",
     "rabbit",
+    "rainbow",
+    "sailboat",
+    "scissors",
+    "sheep",
+    "shoe",
+    "skull",
+    "snail",
+    "snake",
+    "snowflake",
+    "snowman",
+    "spider",
     "star",
+    "stop sign",
+    "strawberry",
     "sun",
     "t-shirt",
+    "teapot",
+    "tooth",
+    "toothbrush",
+    "tornado",
+    "traffic light",
+    "train",
     "tree",
-    "umbrella"
+    "trumpet",
+    "umbrella",
+    "watermelon",
+    "whale",
+    "windmill",
+    "wine bottle",
+    "zebra"
   ],
-  "parameters": 27742,
+  "parameters": 32292,
   "quantizationBits": 6,
   "quantizationScheme": "tensor",
   "storage": "f32",
-  "logicalPackedBytes": 20807,
-  "encodedCharacters": 27742,
-  "moduleBytes": 29544,
-  "moduleGzipBytes": 18619,
-  "moduleBrotliBytes": 16269,
+  "logicalPackedBytes": 24219,
+  "encodedCharacters": 32292,
+  "moduleBytes": 34789,
+  "moduleGzipBytes": 22249,
+  "moduleBrotliBytes": 19636,
   "metrics": {
     "validation": {
-      "sequences": 62248,
-      "top1": 0.9383755301375145,
-      "top3": 0.986361007582573,
+      "sequences": 206276,
+      "top1": 0.8942145474994667,
+      "top3": 0.9712472609513467,
       "perClass": {
         "airplane": {
           "support": 2023,
-          "top1": 0.9372219476025705
+          "top1": 0.8848245180425112
         },
         "apple": {
           "support": 2478,
-          "top1": 0.9673123486682809
+          "top1": 0.9422921711057304
+        },
+        "axe": {
+          "support": 2795,
+          "top1": 0.8207513416815743
+        },
+        "backpack": {
+          "support": 1806,
+          "top1": 0.8981173864894795
         },
         "banana": {
           "support": 2540,
-          "top1": 0.889763779527559
+          "top1": 0.8657480314960629
+        },
+        "basketball": {
+          "support": 1746,
+          "top1": 0.8871706758304696
+        },
+        "bed": {
+          "support": 2404,
+          "top1": 0.8635607321131448
+        },
+        "bee": {
+          "support": 1366,
+          "top1": 0.8674963396778916
         },
         "bicycle": {
           "support": 1678,
-          "top1": 0.9803337306317044
+          "top1": 0.9421930870083433
         },
         "bird": {
           "support": 1644,
-          "top1": 0.7937956204379562
+          "top1": 0.670316301703163
+        },
+        "birthday cake": {
+          "support": 1968,
+          "top1": 0.9080284552845529
         },
         "book": {
           "support": 1949,
-          "top1": 0.9492047203694202
+          "top1": 0.9225243714725501
+        },
+        "bridge": {
+          "support": 2246,
+          "top1": 0.8210151380231523
         },
         "butterfly": {
           "support": 1755,
-          "top1": 0.9538461538461539
+          "top1": 0.9441595441595442
+        },
+        "cactus": {
+          "support": 2003,
+          "top1": 0.926110833749376
+        },
+        "camera": {
+          "support": 2227,
+          "top1": 0.9555455770094298
+        },
+        "campfire": {
+          "support": 1532,
+          "top1": 0.9203655352480418
+        },
+        "candle": {
+          "support": 2800,
+          "top1": 0.9414285714285714
         },
         "car": {
           "support": 1727,
-          "top1": 0.9704690214244355
+          "top1": 0.950781702374059
+        },
+        "carrot": {
+          "support": 2262,
+          "top1": 0.9146772767462422
+        },
+        "castle": {
+          "support": 2293,
+          "top1": 0.9114696903619712
         },
         "cat": {
           "support": 1274,
-          "top1": 0.8634222919937206
+          "top1": 0.7676609105180534
+        },
+        "chair": {
+          "support": 2638,
+          "top1": 0.9480667172100076
         },
         "clock": {
           "support": 2208,
-          "top1": 0.9746376811594203
+          "top1": 0.9506340579710145
         },
         "cloud": {
           "support": 2227,
-          "top1": 0.9519533004041311
+          "top1": 0.9317467444993265
+        },
+        "crown": {
+          "support": 2545,
+          "top1": 0.9308447937131631
         },
         "cup": {
           "support": 2263,
-          "top1": 0.9425541316836058
+          "top1": 0.8519664162615996
         },
         "dog": {
           "support": 1562,
-          "top1": 0.7471190781049936
+          "top1": 0.5749039692701664
+        },
+        "donut": {
+          "support": 2006,
+          "top1": 0.9536390827517448
+        },
+        "drums": {
+          "support": 1494,
+          "top1": 0.8554216867469879
         },
         "elephant": {
           "support": 1351,
-          "top1": 0.8556624722427831
+          "top1": 0.8016284233900814
         },
         "eye": {
           "support": 1732,
-          "top1": 0.9584295612009238
+          "top1": 0.9249422632794457
+        },
+        "eyeglasses": {
+          "support": 2128,
+          "top1": 0.9346804511278195
+        },
+        "face": {
+          "support": 1548,
+          "top1": 0.838501291989664
+        },
+        "fence": {
+          "support": 2403,
+          "top1": 0.8597586350395339
         },
         "fish": {
           "support": 2373,
-          "top1": 0.9502739148756848
+          "top1": 0.8975979772439949
         },
         "flower": {
           "support": 1727,
-          "top1": 0.910828025477707
+          "top1": 0.8876664736537349
+        },
+        "fork": {
+          "support": 3032,
+          "top1": 0.8928100263852242
+        },
+        "frog": {
+          "support": 1468,
+          "top1": 0.6321525885558583
+        },
+        "giraffe": {
+          "support": 1947,
+          "top1": 0.9229583975346687
+        },
+        "grapes": {
+          "support": 932,
+          "top1": 0.9238197424892703
         },
         "guitar": {
           "support": 1710,
-          "top1": 0.9309941520467836
+          "top1": 0.8947368421052632
+        },
+        "hamburger": {
+          "support": 1795,
+          "top1": 0.9348189415041783
+        },
+        "hammer": {
+          "support": 2440,
+          "top1": 0.8168032786885245
+        },
+        "hand": {
+          "support": 2011,
+          "top1": 0.9264047737444058
+        },
+        "headphones": {
+          "support": 2025,
+          "top1": 0.9422222222222222
+        },
+        "helicopter": {
+          "support": 1572,
+          "top1": 0.8835877862595419
+        },
+        "hot air balloon": {
+          "support": 2120,
+          "top1": 0.9056603773584906
+        },
+        "hourglass": {
+          "support": 2550,
+          "top1": 0.9552941176470588
         },
         "house": {
           "support": 2765,
-          "top1": 0.9732368896925859
+          "top1": 0.9587703435804702
+        },
+        "ice cream": {
+          "support": 2455,
+          "top1": 0.9466395112016294
         },
         "key": {
           "support": 2044,
-          "top1": 0.9158512720156555
+          "top1": 0.8806262230919765
+        },
+        "knife": {
+          "support": 2720,
+          "top1": 0.8566176470588235
+        },
+        "ladder": {
+          "support": 3044,
+          "top1": 0.9684625492772667
+        },
+        "laptop": {
+          "support": 1982,
+          "top1": 0.9162462159434914
+        },
+        "leaf": {
+          "support": 2312,
+          "top1": 0.8910034602076125
+        },
+        "light bulb": {
+          "support": 2238,
+          "top1": 0.8699731903485255
+        },
+        "lighthouse": {
+          "support": 1713,
+          "top1": 0.8669001751313485
         },
         "lightning": {
           "support": 2902,
-          "top1": 0.9548587181254308
+          "top1": 0.9403859407305307
+        },
+        "lollipop": {
+          "support": 2603,
+          "top1": 0.9362274298885901
         },
         "moon": {
           "support": 2294,
-          "top1": 0.9049694856146469
+          "top1": 0.8570183086312119
         },
         "mountain": {
           "support": 3437,
-          "top1": 0.9871981379109689
+          "top1": 0.9389002036659878
+        },
+        "mushroom": {
+          "support": 2469,
+          "top1": 0.8537869582827056
+        },
+        "octopus": {
+          "support": 1657,
+          "top1": 0.896197948098974
+        },
+        "pencil": {
+          "support": 2568,
+          "top1": 0.8808411214953271
+        },
+        "piano": {
+          "support": 2068,
+          "top1": 0.7877176015473888
+        },
+        "pig": {
+          "support": 1259,
+          "top1": 0.8006354249404289
+        },
+        "pineapple": {
+          "support": 1836,
+          "top1": 0.9074074074074074
         },
         "pizza": {
           "support": 1449,
-          "top1": 0.9523809523809523
+          "top1": 0.8274672187715666
         },
         "rabbit": {
           "support": 1379,
-          "top1": 0.8984771573604061
+          "top1": 0.8948513415518492
+        },
+        "rainbow": {
+          "support": 2814,
+          "top1": 0.9633972992181947
+        },
+        "sailboat": {
+          "support": 2565,
+          "top1": 0.9547758284600389
+        },
+        "scissors": {
+          "support": 1738,
+          "top1": 0.8722669735327964
+        },
+        "sheep": {
+          "support": 1284,
+          "top1": 0.8574766355140186
+        },
+        "shoe": {
+          "support": 2613,
+          "top1": 0.8821278224263299
+        },
+        "skull": {
+          "support": 1527,
+          "top1": 0.9102815979043877
+        },
+        "snail": {
+          "support": 1728,
+          "top1": 0.9398148148148148
+        },
+        "snake": {
+          "support": 2422,
+          "top1": 0.8711808422791082
+        },
+        "snowflake": {
+          "support": 2326,
+          "top1": 0.9101461736887361
+        },
+        "snowman": {
+          "support": 1947,
+          "top1": 0.9599383667180277
+        },
+        "spider": {
+          "support": 1490,
+          "top1": 0.8651006711409396
         },
         "star": {
           "support": 2852,
-          "top1": 0.9698457223001402
+          "top1": 0.9659887798036466
+        },
+        "stop sign": {
+          "support": 1895,
+          "top1": 0.9382585751978891
+        },
+        "strawberry": {
+          "support": 1704,
+          "top1": 0.8368544600938967
         },
         "sun": {
           "support": 1950,
-          "top1": 0.9646153846153847
+          "top1": 0.9276923076923077
         },
         "t-shirt": {
           "support": 2730,
-          "top1": 0.9798534798534798
+          "top1": 0.9721611721611721
+        },
+        "teapot": {
+          "support": 2039,
+          "top1": 0.8293281020107895
+        },
+        "tooth": {
+          "support": 2412,
+          "top1": 0.9199834162520729
+        },
+        "toothbrush": {
+          "support": 2383,
+          "top1": 0.9013848090642048
+        },
+        "tornado": {
+          "support": 1013,
+          "top1": 0.9279368213228035
+        },
+        "traffic light": {
+          "support": 1945,
+          "top1": 0.9568123393316196
+        },
+        "train": {
+          "support": 1271,
+          "top1": 0.9103068450039339
         },
         "tree": {
           "support": 1678,
-          "top1": 0.9457687723480334
+          "top1": 0.8754469606674613
+        },
+        "trumpet": {
+          "support": 1937,
+          "top1": 0.8162106350025813
         },
         "umbrella": {
           "support": 2547,
-          "top1": 0.9697683549273656
+          "top1": 0.8924224577934825
+        },
+        "watermelon": {
+          "support": 1973,
+          "top1": 0.7800304105423214
+        },
+        "whale": {
+          "support": 1876,
+          "top1": 0.7579957356076759
+        },
+        "windmill": {
+          "support": 1888,
+          "top1": 0.8670550847457628
+        },
+        "wine bottle": {
+          "support": 2869,
+          "top1": 0.9337748344370861
+        },
+        "zebra": {
+          "support": 1343,
+          "top1": 0.9128816083395384
         }
       },
       "confusions": [
         {
-          "truth": "banana",
-          "predicted": "moon",
-          "count": 196
+          "truth": "hammer",
+          "predicted": "axe",
+          "count": 208
+        },
+        {
+          "truth": "axe",
+          "predicted": "hammer",
+          "count": 199
         },
         {
           "truth": "dog",
           "predicted": "elephant",
-          "count": 162
+          "count": 154
         },
         {
-          "truth": "elephant",
-          "predicted": "dog",
-          "count": 115
+          "truth": "whale",
+          "predicted": "fish",
+          "count": 144
         },
         {
-          "truth": "flower",
-          "predicted": "tree",
-          "count": 94
+          "truth": "light bulb",
+          "predicted": "hot air balloon",
+          "count": 131
         },
         {
-          "truth": "cat",
-          "predicted": "dog",
-          "count": 87
+          "truth": "hot air balloon",
+          "predicted": "light bulb",
+          "count": 131
         },
         {
-          "truth": "moon",
-          "predicted": "banana",
-          "count": 67
+          "truth": "watermelon",
+          "predicted": "basketball",
+          "count": 130
         },
         {
-          "truth": "rabbit",
-          "predicted": "cat",
-          "count": 64
+          "truth": "bridge",
+          "predicted": "rainbow",
+          "count": 124
         },
         {
-          "truth": "bird",
-          "predicted": "dog",
-          "count": 63
+          "truth": "banana",
+          "predicted": "moon",
+          "count": 119
         },
         {
-          "truth": "guitar",
-          "predicted": "key",
-          "count": 54
-        },
-        {
-          "truth": "cat",
-          "predicted": "rabbit",
-          "count": 52
+          "truth": "knife",
+          "predicted": "pencil",
+          "count": 107
         }
       ]
     },
     "validationStrokes": {
       "1": {
-        "sequences": 62248,
-        "top1": 0.4501349440945894,
-        "top3": 0.6201484385040483
+        "sequences": 206276,
+        "top1": 0.3133374701855766,
+        "top3": 0.43184374333417364
       },
       "2": {
-        "sequences": 62248,
-        "top1": 0.6835079038683973,
-        "top3": 0.825118879321424
+        "sequences": 206276,
+        "top1": 0.5448040489441331,
+        "top3": 0.6989324982062867
       },
       "3": {
-        "sequences": 62248,
-        "top1": 0.8105320652872381,
-        "top3": 0.9120774964657499
+        "sequences": 206276,
+        "top1": 0.6977932478814792,
+        "top3": 0.8300238515387152
       }
     },
     "test": {
-      "support": 62040,
-      "top1": 0.9363152804642166,
-      "top3": 0.9870245003223727,
+      "support": 207034,
+      "top1": 0.8941043500101432,
+      "top3": 0.9714443038341528,
       "strokes3": {
-        "support": 62040,
-        "correct": 50173,
-        "top1": 0.8087201805286912
+        "support": 207034,
+        "correct": 144077,
+        "top1": 0.6959098505559473
       }
     }
   },
   "corpora": {
-    "validation": "893444f9aefc05fa55b91e88a19bdf06a8c768da424a6189b472565ea3441c0a",
-    "test": "568963743498d802e28c55eefe8870d32713be49a941f5a5b89787c0ed18e471"
+    "validation": "a6e8794b7108c10d61a09a1e775b9e0894ee18f99e66825bc13d5ffc83288c9f",
+    "test": "0bc7f0a1d9bf49fc0ce40bdddc9f1a09b3eda7212bb0b5028c71f34bdf6e845f"
   },
   "promotion": {
     "criterion": "explicit-user-override",
     "candidate": {
-      "support": 62040,
-      "correct": 58089,
-      "top1": 0.9363152804642166,
-      "top3": 0.9870245003223727,
+      "support": 207034,
+      "correct": 185110,
+      "top1": 0.8941043500101432,
+      "top3": 0.9714443038341528,
       "classes": {
         "airplane": {
           "support": 2009,
-          "correct": 1876,
-          "top1": 0.9337979094076655
+          "correct": 1785,
+          "top1": 0.8885017421602788
         },
         "apple": {
           "support": 2373,
-          "correct": 2298,
-          "top1": 0.9683944374209861
+          "correct": 2236,
+          "top1": 0.9422671723556679
+        },
+        "axe": {
+          "support": 2778,
+          "correct": 2293,
+          "top1": 0.8254139668826493
+        },
+        "backpack": {
+          "support": 1762,
+          "correct": 1591,
+          "top1": 0.9029511918274687
         },
         "banana": {
           "support": 2494,
-          "correct": 2232,
-          "top1": 0.8949478748997595
+          "correct": 2153,
+          "top1": 0.8632718524458701
+        },
+        "basketball": {
+          "support": 1834,
+          "correct": 1641,
+          "top1": 0.8947655398037078
+        },
+        "bed": {
+          "support": 2359,
+          "correct": 2096,
+          "top1": 0.8885120813904197
+        },
+        "bee": {
+          "support": 1394,
+          "correct": 1219,
+          "top1": 0.8744619799139168
         },
         "bicycle": {
           "support": 1604,
-          "correct": 1563,
-          "top1": 0.9744389027431422
+          "correct": 1513,
+          "top1": 0.9432668329177057
         },
         "bird": {
           "support": 1548,
-          "correct": 1191,
-          "top1": 0.7693798449612403
+          "correct": 1034,
+          "top1": 0.6679586563307494
+        },
+        "birthday cake": {
+          "support": 1898,
+          "correct": 1685,
+          "top1": 0.8877766069546892
         },
         "book": {
           "support": 2026,
-          "correct": 1936,
-          "top1": 0.9555774925962488
+          "correct": 1890,
+          "top1": 0.932872655478776
+        },
+        "bridge": {
+          "support": 2442,
+          "correct": 2053,
+          "top1": 0.8407043407043407
         },
         "butterfly": {
           "support": 1747,
-          "correct": 1659,
-          "top1": 0.9496279336004579
+          "correct": 1637,
+          "top1": 0.9370349170005724
+        },
+        "cactus": {
+          "support": 2045,
+          "correct": 1861,
+          "top1": 0.9100244498777507
+        },
+        "camera": {
+          "support": 2194,
+          "correct": 2106,
+          "top1": 0.959890610756609
+        },
+        "campfire": {
+          "support": 1414,
+          "correct": 1304,
+          "top1": 0.9222065063649222
+        },
+        "candle": {
+          "support": 2760,
+          "correct": 2594,
+          "top1": 0.9398550724637681
         },
         "car": {
           "support": 1652,
-          "correct": 1595,
-          "top1": 0.965496368038741
+          "correct": 1579,
+          "top1": 0.9558111380145279
+        },
+        "carrot": {
+          "support": 2100,
+          "correct": 1923,
+          "top1": 0.9157142857142857
+        },
+        "castle": {
+          "support": 2357,
+          "correct": 2143,
+          "top1": 0.9092066185829444
         },
         "cat": {
           "support": 1354,
-          "correct": 1172,
-          "top1": 0.8655834564254062
+          "correct": 1065,
+          "top1": 0.7865583456425406
+        },
+        "chair": {
+          "support": 2617,
+          "correct": 2452,
+          "top1": 0.9369507069163164
         },
         "clock": {
           "support": 2136,
-          "correct": 2078,
-          "top1": 0.9728464419475655
+          "correct": 2042,
+          "top1": 0.9559925093632958
         },
         "cloud": {
           "support": 2112,
-          "correct": 1999,
-          "top1": 0.9464962121212122
+          "correct": 1961,
+          "top1": 0.9285037878787878
+        },
+        "crown": {
+          "support": 2588,
+          "correct": 2433,
+          "top1": 0.9401081916537867
         },
         "cup": {
           "support": 2309,
-          "correct": 2188,
-          "top1": 0.9475963620614984
+          "correct": 1989,
+          "top1": 0.8614118666089217
         },
         "dog": {
           "support": 1592,
-          "correct": 1152,
-          "top1": 0.7236180904522613
+          "correct": 864,
+          "top1": 0.542713567839196
+        },
+        "donut": {
+          "support": 1914,
+          "correct": 1807,
+          "top1": 0.9440961337513062
+        },
+        "drums": {
+          "support": 1489,
+          "correct": 1252,
+          "top1": 0.8408327736736064
         },
         "elephant": {
           "support": 1357,
-          "correct": 1129,
-          "top1": 0.8319823139277819
+          "correct": 1075,
+          "top1": 0.7921886514369934
         },
         "eye": {
           "support": 1717,
-          "correct": 1647,
-          "top1": 0.959231217239371
+          "correct": 1578,
+          "top1": 0.9190448456610367
+        },
+        "eyeglasses": {
+          "support": 2075,
+          "correct": 1940,
+          "top1": 0.9349397590361446
+        },
+        "face": {
+          "support": 1542,
+          "correct": 1287,
+          "top1": 0.8346303501945526
+        },
+        "fence": {
+          "support": 2449,
+          "correct": 2072,
+          "top1": 0.8460596161698652
         },
         "fish": {
           "support": 2428,
-          "correct": 2313,
-          "top1": 0.9526359143327842
+          "correct": 2185,
+          "top1": 0.8999176276771005
         },
         "flower": {
           "support": 1691,
-          "correct": 1548,
-          "top1": 0.9154346540508574
+          "correct": 1528,
+          "top1": 0.9036073329390893
+        },
+        "fork": {
+          "support": 3007,
+          "correct": 2679,
+          "top1": 0.8909211839042235
+        },
+        "frog": {
+          "support": 1438,
+          "correct": 877,
+          "top1": 0.6098748261474269
+        },
+        "giraffe": {
+          "support": 2029,
+          "correct": 1875,
+          "top1": 0.9241005421389847
+        },
+        "grapes": {
+          "support": 1097,
+          "correct": 1012,
+          "top1": 0.9225159525979946
         },
         "guitar": {
           "support": 1772,
-          "correct": 1663,
-          "top1": 0.9384875846501128
+          "correct": 1595,
+          "top1": 0.9001128668171557
+        },
+        "hamburger": {
+          "support": 1757,
+          "correct": 1646,
+          "top1": 0.9368241320432555
+        },
+        "hammer": {
+          "support": 2465,
+          "correct": 2063,
+          "top1": 0.8369168356997971
+        },
+        "hand": {
+          "support": 2228,
+          "correct": 2075,
+          "top1": 0.9313285457809695
+        },
+        "headphones": {
+          "support": 1999,
+          "correct": 1874,
+          "top1": 0.9374687343671836
+        },
+        "helicopter": {
+          "support": 1498,
+          "correct": 1304,
+          "top1": 0.8704939919893191
+        },
+        "hot air balloon": {
+          "support": 2215,
+          "correct": 1981,
+          "top1": 0.8943566591422122
+        },
+        "hourglass": {
+          "support": 2474,
+          "correct": 2373,
+          "top1": 0.9591754244139046
         },
         "house": {
           "support": 2801,
-          "correct": 2728,
-          "top1": 0.9739378793288112
+          "correct": 2673,
+          "top1": 0.9543020349875044
+        },
+        "ice cream": {
+          "support": 2315,
+          "correct": 2186,
+          "top1": 0.9442764578833693
         },
         "key": {
           "support": 2062,
-          "correct": 1865,
-          "top1": 0.9044616876818623
+          "correct": 1792,
+          "top1": 0.8690591658583899
+        },
+        "knife": {
+          "support": 2677,
+          "correct": 2251,
+          "top1": 0.8408666417631677
+        },
+        "ladder": {
+          "support": 2992,
+          "correct": 2908,
+          "top1": 0.9719251336898396
+        },
+        "laptop": {
+          "support": 1913,
+          "correct": 1767,
+          "top1": 0.9236800836382645
+        },
+        "leaf": {
+          "support": 2335,
+          "correct": 2072,
+          "top1": 0.8873661670235546
+        },
+        "light bulb": {
+          "support": 2249,
+          "correct": 1948,
+          "top1": 0.866162738995109
+        },
+        "lighthouse": {
+          "support": 1742,
+          "correct": 1520,
+          "top1": 0.8725602755453502
         },
         "lightning": {
           "support": 2990,
-          "correct": 2860,
-          "top1": 0.9565217391304348
+          "correct": 2819,
+          "top1": 0.942809364548495
+        },
+        "lollipop": {
+          "support": 2652,
+          "correct": 2487,
+          "top1": 0.9377828054298643
         },
         "moon": {
           "support": 2292,
-          "correct": 2048,
-          "top1": 0.893542757417103
+          "correct": 1955,
+          "top1": 0.8529668411867365
         },
         "mountain": {
           "support": 3401,
-          "correct": 3351,
-          "top1": 0.9852984416348133
+          "correct": 3191,
+          "top1": 0.9382534548662158
+        },
+        "mushroom": {
+          "support": 2448,
+          "correct": 2112,
+          "top1": 0.8627450980392157
+        },
+        "octopus": {
+          "support": 1763,
+          "correct": 1589,
+          "top1": 0.9013045944412933
+        },
+        "pencil": {
+          "support": 2499,
+          "correct": 2203,
+          "top1": 0.8815526210484194
+        },
+        "piano": {
+          "support": 2060,
+          "correct": 1599,
+          "top1": 0.7762135922330097
+        },
+        "pig": {
+          "support": 1325,
+          "correct": 1045,
+          "top1": 0.7886792452830189
+        },
+        "pineapple": {
+          "support": 1841,
+          "correct": 1675,
+          "top1": 0.9098316132536665
         },
         "pizza": {
           "support": 1378,
-          "correct": 1295,
-          "top1": 0.9397677793904209
+          "correct": 1139,
+          "top1": 0.8265602322206096
         },
         "rabbit": {
           "support": 1362,
-          "correct": 1237,
-          "top1": 0.908223201174743
+          "correct": 1231,
+          "top1": 0.9038179148311307
+        },
+        "rainbow": {
+          "support": 2929,
+          "correct": 2823,
+          "top1": 0.9638101741208603
+        },
+        "sailboat": {
+          "support": 2639,
+          "correct": 2522,
+          "top1": 0.9556650246305419
+        },
+        "scissors": {
+          "support": 1749,
+          "correct": 1523,
+          "top1": 0.8707833047455689
+        },
+        "sheep": {
+          "support": 1262,
+          "correct": 1095,
+          "top1": 0.8676703645007924
+        },
+        "shoe": {
+          "support": 2769,
+          "correct": 2446,
+          "top1": 0.883351390393644
+        },
+        "skull": {
+          "support": 1562,
+          "correct": 1431,
+          "top1": 0.9161331626120358
+        },
+        "snail": {
+          "support": 1728,
+          "correct": 1605,
+          "top1": 0.9288194444444444
+        },
+        "snake": {
+          "support": 2497,
+          "correct": 2165,
+          "top1": 0.8670404485382459
+        },
+        "snowflake": {
+          "support": 2376,
+          "correct": 2157,
+          "top1": 0.9078282828282829
+        },
+        "snowman": {
+          "support": 1948,
+          "correct": 1885,
+          "top1": 0.9676591375770021
+        },
+        "spider": {
+          "support": 1551,
+          "correct": 1350,
+          "top1": 0.8704061895551257
         },
         "star": {
           "support": 3028,
-          "correct": 2942,
-          "top1": 0.9715984147952443
+          "correct": 2934,
+          "top1": 0.9689564068692206
+        },
+        "stop sign": {
+          "support": 1879,
+          "correct": 1768,
+          "top1": 0.940926024481107
+        },
+        "strawberry": {
+          "support": 1802,
+          "correct": 1500,
+          "top1": 0.832408435072142
         },
         "sun": {
           "support": 1964,
-          "correct": 1914,
-          "top1": 0.9745417515274949
+          "correct": 1839,
+          "top1": 0.9363543788187373
         },
         "t-shirt": {
           "support": 2800,
-          "correct": 2730,
-          "top1": 0.975
+          "correct": 2714,
+          "top1": 0.9692857142857143
+        },
+        "teapot": {
+          "support": 2036,
+          "correct": 1690,
+          "top1": 0.8300589390962672
+        },
+        "tooth": {
+          "support": 2550,
+          "correct": 2353,
+          "top1": 0.9227450980392157
+        },
+        "toothbrush": {
+          "support": 2317,
+          "correct": 2088,
+          "top1": 0.9011652999568407
+        },
+        "tornado": {
+          "support": 979,
+          "correct": 908,
+          "top1": 0.9274770173646578
+        },
+        "traffic light": {
+          "support": 1920,
+          "correct": 1822,
+          "top1": 0.9489583333333333
+        },
+        "train": {
+          "support": 1359,
+          "correct": 1234,
+          "top1": 0.9080206033848418
         },
         "tree": {
           "support": 1614,
-          "correct": 1530,
-          "top1": 0.9479553903345725
+          "correct": 1421,
+          "top1": 0.8804213135068154
+        },
+        "trumpet": {
+          "support": 1913,
+          "correct": 1543,
+          "top1": 0.8065865133298484
         },
         "umbrella": {
           "support": 2427,
-          "correct": 2350,
-          "top1": 0.9682735887927483
+          "correct": 2185,
+          "top1": 0.900288421920066
+        },
+        "watermelon": {
+          "support": 1963,
+          "correct": 1525,
+          "top1": 0.7768721344880285
+        },
+        "whale": {
+          "support": 1859,
+          "correct": 1400,
+          "top1": 0.7530930607853685
+        },
+        "windmill": {
+          "support": 1949,
+          "correct": 1708,
+          "top1": 0.8763468445356594
+        },
+        "wine bottle": {
+          "support": 3047,
+          "correct": 2859,
+          "top1": 0.9382999671808336
+        },
+        "zebra": {
+          "support": 1382,
+          "correct": 1235,
+          "top1": 0.8936324167872648
         }
       },
       "confusions": [
         {
-          "truth": "banana",
-          "predicted": "moon",
-          "count": 179
+          "truth": "hammer",
+          "predicted": "axe",
+          "count": 203
+        },
+        {
+          "truth": "axe",
+          "predicted": "hammer",
+          "count": 193
         },
         {
           "truth": "dog",
           "predicted": "elephant",
-          "count": 172
+          "count": 161
         },
         {
-          "truth": "elephant",
-          "predicted": "dog",
-          "count": 115
+          "truth": "hot air balloon",
+          "predicted": "light bulb",
+          "count": 152
         },
         {
-          "truth": "cat",
-          "predicted": "dog",
-          "count": 99
+          "truth": "whale",
+          "predicted": "fish",
+          "count": 143
         },
         {
-          "truth": "flower",
-          "predicted": "tree",
-          "count": 88
+          "truth": "light bulb",
+          "predicted": "hot air balloon",
+          "count": 133
         },
         {
-          "truth": "bird",
-          "predicted": "airplane",
-          "count": 76
+          "truth": "knife",
+          "predicted": "pencil",
+          "count": 133
         },
         {
-          "truth": "moon",
-          "predicted": "banana",
-          "count": 66
+          "truth": "watermelon",
+          "predicted": "basketball",
+          "count": 131
         },
         {
-          "truth": "dog",
-          "predicted": "cat",
-          "count": 62
+          "truth": "bridge",
+          "predicted": "rainbow",
+          "count": 129
         },
         {
-          "truth": "bird",
-          "predicted": "dog",
-          "count": 58
-        },
-        {
-          "truth": "guitar",
-          "predicted": "key",
-          "count": 52
+          "truth": "banana",
+          "predicted": "moon",
+          "count": 126
         }
       ],
       "strokes3": {
-        "support": 62040,
-        "correct": 50173,
-        "top1": 0.8087201805286912
+        "support": 207034,
+        "correct": 144077,
+        "top1": 0.6959098505559473
       }
     },
     "baseline": null,
@@ -487,15 +1187,22 @@
     "guards": [],
     "failures": [],
     "accepted": true,
+    "baselineIdentity": {
+      "report": "active/export-report.json",
+      "checkpoint": "runs/stage3-baseline/best.pt",
+      "checkpointSha256": "2108836776fe4b21445407c3087558ebcd13326cc796c83e1e412bb968e94183",
+      "artifactSha256": "0d4f8a7796370fe6102c3b45e1c29787ffb757ce3f1ccde3562eaaed2562b1c6",
+      "artifact": "/Users/chencheng/Projects/gpu-doodle/packages/core/src/model/weights.gen.ts"
+    },
     "corpus": {
       "split": "test",
-      "sequences": 62040,
-      "featurizedSha256": "568963743498d802e28c55eefe8870d32713be49a941f5a5b89787c0ed18e471"
+      "sequences": 207034,
+      "featurizedSha256": "0bc7f0a1d9bf49fc0ce40bdddc9f1a09b3eda7212bb0b5028c71f34bdf6e845f"
     },
     "forced": true,
     "overriddenCriterion": "test-top1-strict-improvement",
     "overriddenFailures": [
-      "no pinned baseline at active/export-report.json"
+      "shipped weights were trained on a different class list"
     ],
     "description": "Strict improvement in test top-1 over the shipped weights, with no per-class regression beyond a two-proportion z=1.96 tolerance and no first-3-stroke regression beyond the same tolerance. Both sides are decoded from their int6 wire form and re-scored on the same test split in this process; stored scores are never read. The validation split selected the checkpoint and gates nothing."
   },
@@ -504,22 +1211,22 @@
     "prefix": "active/parity",
     "sequences": 512,
     "points": 18364,
-    "classes": 30,
+    "classes": 100,
     "format": {
       "rows": "int16[3] dx dy penLift, concatenated",
       "offsets": "uint32, sequences + 1",
       "labels": "uint8",
       "logits": "float32[classes] per sequence"
     },
-    "argmaxAgreement": 0.9453125
+    "argmaxAgreement": 0.888671875
   },
-  "exportSourceDirectory": "exports/0d4f8a7796370fe6102c3b45e1c29787ffb757ce3f1ccde3562eaaed2562b1c6/source",
+  "exportSourceDirectory": "exports/79ed75e801a4f66d68613f7f73739ec303388685180ab39da736ca1b67cf0436/source",
   "exportSourceHashes": {
     "training/export.py": "af8484d5a5f1776a892266aa2ff510c60dd2e2411a5df983fbd1e9cf84133851",
-    "training/model.py": "99b6958fcffe47f5bb844044b295405524862d3b991785deb42ab8b8f2d18d57",
+    "training/model.py": "c5fe79721f0950b2a58ac66e3932b024f82684562ae0bfef3a33ba0e22d188f4",
     "training/dataset.py": "70877cde45e84ef053a5b0b4cb8f23503d6c93774314260f09c07cac6cd094c9",
     "training/train.py": "17ab099927501918b8080dbcbb44d5275e7d2a8d02cdb417e86858f3fa20ae5b",
     "training/uv.lock": "cde6f9412b8189f1d0f6f9523f91e5404810d7634e07ecc93c733a51f66ab18d",
-    "data/classes.json": "0e911b29a4eab17885fc60c8a39bb612a2b7456d2fe1ab808584c65eef3dee27"
+    "data/classes.json": "bf18c12d89373c7354f3992f65c2ef1f21c852fbdbeb5d350b0e9cb245084787"
   }
 }

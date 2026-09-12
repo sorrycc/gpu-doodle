@@ -15,7 +15,7 @@ packages/training/runs/*
 !packages/training/runs/.gitkeep
 packages/training/runs/**/*.pt
 packages/training/exports/*
-!packages/training/exports/0d4f8a7796370fe6102c3b45e1c29787ffb757ce3f1ccde3562eaaed2562b1c6/
+!packages/training/exports/79ed75e801a4f66d68613f7f73739ec303388685180ab39da736ca1b67cf0436/
 packages/training/active/*.npz
 
 __pycache__
@@ -23,3 +23,5 @@ __pycache__
 .pytest_cache/
 .ruff_cache/
 !packages/training/runs/stage3-baseline/
+
+!packages/training/runs/c100-v1/

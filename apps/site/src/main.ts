@@ -41,6 +41,7 @@ const ui = {
   gameStatus: element<HTMLParagraphElement>("game-status"),
 };
 
+document.getElementById("label-count")!.textContent = String(LABELS.length);
 for (const label of LABELS) {
   const item = document.createElement("li");
   item.textContent = `${labelZh[label]} ${label}`;

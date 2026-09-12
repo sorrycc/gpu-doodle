@@ -8,7 +8,7 @@ See `PLAN.md` for the design, `MODEL_CARD.md` for the shipped model's provenance
 
 ```sh
 pnpm install
-pnpm data:fetch      # 20 MB prefixes of 30 full/simplified ndjson files (about 570 MB)
+pnpm data:fetch      # 20 MB prefixes of 100 full/simplified ndjson files (about 1.9 GB)
 pnpm data:build      # filter, split by key_id hash, delta-encode
 pnpm train -- --run experiment --epochs 20
 pnpm export -- --checkpoint runs/experiment/best.pt
@@ -43,7 +43,7 @@ pnpm size:gate       # same build, fails when the entry exceeds 50,000 Brotli by
 pnpm check:package   # npm pack, install into a throwaway consumer, type-check and run it
 ```
 
-The shipped entry is 22,238 Brotli bytes (45,168 minified). The WGSL file never ships: the build splices the model constants into it, minifies it with wgslender and inlines the string next to the weight table.
+The shipped entry is 26,185 Brotli bytes (51,638 minified); the model ranks 100 Quick Draw categories at 89.4% test top-1. The WGSL file never ships: the build splices the model constants into it, minifies it with wgslender and inlines the string next to the weight table.
 
 ## Demo
 

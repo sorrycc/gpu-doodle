@@ -12,7 +12,7 @@
 
 ```sh
 pnpm install
-pnpm data:fetch     # download 20 MB prefixes of the 30 full/simplified ndjson files, verify sha256
+pnpm data:fetch     # download 20 MB prefixes of the 100 full/simplified ndjson files, verify sha256
 pnpm data:build     # filter recognized, split by key_id hash, delta-encode into data/synth/default
 pnpm train -- --run <name> --epochs 20
 pnpm export -- --checkpoint runs/<name>/best.pt   # int6 weights.gen.ts, export-report.json, parity fixtures; gated

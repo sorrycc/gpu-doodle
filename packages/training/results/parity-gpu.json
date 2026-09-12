@@ -1,5 +1,5 @@
 {
-  "model": "0d4f8a7796370fe6102c3b45e1c29787ffb757ce3f1ccde3562eaaed2562b1c6",
+  "model": "79ed75e801a4f66d68613f7f73739ec303388685180ab39da736ca1b67cf0436",
   "browser": "148.0.7778.179",
   "classifier": {
     "sequences": 1000,
@@ -10,17 +10,17 @@
     "partialSumsToOne": true
   },
   "sequences": 10000,
-  "points": 387598,
+  "points": 348343,
   "pythonSequences": 512,
-  "maxError": 0.000006407499313354492,
-  "pythonMaxError": 0.000005245208740234375,
+  "maxError": 0.000010058283805847168,
+  "pythonMaxError": 0.000008106231689453125,
   "mismatches": 0,
   "pythonMismatches": 0,
-  "top1": 0.9139,
-  "gpuMilliseconds": 136.79999995231628,
-  "cpuMilliseconds": 5759.599999189377,
-  "elapsedMilliseconds": 5900,
-  "recoveryError": 0.0000016689300537109375,
+  "top1": 0.8843,
+  "gpuMilliseconds": 165,
+  "cpuMilliseconds": 5166.600001335144,
+  "elapsedMilliseconds": 5336.799999952316,
+  "recoveryError": 0.000003635883331298828,
   "recoveries": 1,
   "submissions": 21,
   "emptyIsUndefined": true

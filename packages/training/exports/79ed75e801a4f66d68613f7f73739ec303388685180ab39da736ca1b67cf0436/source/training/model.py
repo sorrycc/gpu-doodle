@@ -15,7 +15,7 @@ from torch.nn import functional as F
 FEATURES = 8
 HIDDEN = 64
 HEAD = 64
-CLASSES = 30
+CLASSES = 100
 CONV_WIDTH = 5
 
 

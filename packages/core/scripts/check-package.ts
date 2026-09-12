@@ -77,7 +77,7 @@ for (let step = 0; step <= 48; step++) {
 }
 const guesses: Guess[] = classify([circle], { topK: 3 });
 if (guesses.length !== 3) throw new Error("classify did not return three guesses.");
-const total = classify([circle], { topK: 30 }).reduce((sum, guess) => sum + guess.probability, 0);
+const total = classify([circle], { topK: LABELS.length }).reduce((sum, guess) => sum + guess.probability, 0);
 if (Math.abs(total - 1) > 1e-4) throw new Error("Probabilities do not sum to one: " + total);
 for (const guess of guesses) {
   if (LABELS[guess.index] !== guess.label || !guess.labelZh) throw new Error("Guess label does not match its index.");

@@ -8,34 +8,104 @@
   "classes": [
     "airplane",
     "apple",
+    "axe",
+    "backpack",
     "banana",
+    "basketball",
+    "bed",
+    "bee",
     "bicycle",
     "bird",
+    "birthday cake",
     "book",
+    "bridge",
     "butterfly",
+    "cactus",
+    "camera",
+    "campfire",
+    "candle",
     "car",
+    "carrot",
+    "castle",
     "cat",
+    "chair",
     "clock",
     "cloud",
+    "crown",
     "cup",
     "dog",
+    "donut",
+    "drums",
     "elephant",
     "eye",
+    "eyeglasses",
+    "face",
+    "fence",
     "fish",
     "flower",
+    "fork",
+    "frog",
+    "giraffe",
+    "grapes",
     "guitar",
+    "hamburger",
+    "hammer",
+    "hand",
+    "headphones",
+    "helicopter",
+    "hot air balloon",
+    "hourglass",
     "house",
+    "ice cream",
     "key",
+    "knife",
+    "ladder",
+    "laptop",
+    "leaf",
+    "light bulb",
+    "lighthouse",
     "lightning",
+    "lollipop",
     "moon",
     "mountain",
+    "mushroom",
+    "octopus",
+    "pencil",
+    "piano",
+    "pig",
+    "pineapple",
     "pizza",
     "rabbit",
+    "rainbow",
+    "sailboat",
+    "scissors",
+    "sheep",
+    "shoe",
+    "skull",
+    "snail",
+    "snake",
+    "snowflake",
+    "snowman",
+    "spider",
     "star",
+    "stop sign",
+    "strawberry",
     "sun",
     "t-shirt",
+    "teapot",
+    "tooth",
+    "toothbrush",
+    "tornado",
+    "traffic light",
+    "train",
     "tree",
-    "umbrella"
+    "trumpet",
+    "umbrella",
+    "watermelon",
+    "whale",
+    "windmill",
+    "wine bottle",
+    "zebra"
   ],
   "files": {
     "airplane": {
@@ -56,6 +126,24 @@
       "records": 49201,
       "recognized": 47568
     },
+    "axe": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/axe.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999757,
+      "sha256": "37be2204ac92069ffbd473f5979cfa8944ee21e9ba1e470160e8370c77bf3765",
+      "retrieved": "2026-09-12",
+      "records": 60583,
+      "recognized": 56357
+    },
+    "backpack": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/backpack.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999629,
+      "sha256": "edbb8a266e1b8e4b7c4dd68d17fd27c602c57c1cf690da54968d8b523e484fc8",
+      "retrieved": "2026-09-12",
+      "records": 37464,
+      "recognized": 35134
+    },
     "banana": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/banana.ndjson",
       "requestedBytes": 20000000,
@@ -64,6 +152,33 @@
       "retrieved": "2026-09-12",
       "records": 55921,
       "recognized": 51791
+    },
+    "basketball": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/basketball.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999749,
+      "sha256": "00d05f371df5155a385c4ad982a52ddb473518af961da9594a0d837a5dcbcc76",
+      "retrieved": "2026-09-12",
+      "records": 37889,
+      "recognized": 35829
+    },
+    "bed": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/bed.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999982,
+      "sha256": "2e219907c75e81d1ecdf5514c07e01aad7d085252eb8f3ffc587ded817a53df1",
+      "retrieved": "2026-09-12",
+      "records": 49980,
+      "recognized": 46948
+    },
+    "bee": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/bee.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999641,
+      "sha256": "b733390123a146f3679f676e278de3fd33746118873cb66f883aa68adfe5e9fe",
+      "retrieved": "2026-09-12",
+      "records": 30183,
+      "recognized": 27756
     },
     "bicycle": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/bicycle.ndjson",
@@ -83,6 +198,15 @@
       "records": 38740,
       "recognized": 32367
     },
+    "birthday cake": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/birthday%20cake.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999840,
+      "sha256": "8d3054221ea2342e5df72b9e602e9faaa084872963fad0296fc7824ec679eb70",
+      "retrieved": "2026-09-12",
+      "records": 40455,
+      "recognized": 38342
+    },
     "book": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/book.ndjson",
       "requestedBytes": 20000000,
@@ -91,6 +215,15 @@
       "retrieved": "2026-09-12",
       "records": 41829,
       "recognized": 39067
+    },
+    "bridge": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/bridge.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999705,
+      "sha256": "89c163901a8be3a4073a369fbe34a81c0bf68405b6492b2cc488ef33ceed5a25",
+      "retrieved": "2026-09-12",
+      "records": 50566,
+      "recognized": 46200
     },
     "butterfly": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/butterfly.ndjson",
@@ -101,6 +234,42 @@
       "records": 35523,
       "recognized": 34501
     },
+    "cactus": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/cactus.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999880,
+      "sha256": "9e09735bd23afe33dfd4d370f31accfc4b7324248cd31b8915cb26d7ba2a953d",
+      "retrieved": "2026-09-12",
+      "records": 42449,
+      "recognized": 40344
+    },
+    "camera": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/camera.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999977,
+      "sha256": "1aba3958ac94eca63cc9213051e0f0c93dbb3028ba4798d3de97b9a2ed93672f",
+      "retrieved": "2026-09-12",
+      "records": 45303,
+      "recognized": 43886
+    },
+    "campfire": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/campfire.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999804,
+      "sha256": "65d29e117d764d9f21dcd567659187e9043a06bcc729ef2a712adac20bfd9e36",
+      "retrieved": "2026-09-12",
+      "records": 31379,
+      "recognized": 29381
+    },
+    "candle": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/candle.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999796,
+      "sha256": "e07bec14f093b1df56d657997ae8a39efe62bd2175770075d4f5773c6729ef5b",
+      "retrieved": "2026-09-12",
+      "records": 57792,
+      "recognized": 55179
+    },
     "car": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/car.ndjson",
       "requestedBytes": 20000000,
@@ -110,6 +279,24 @@
       "records": 37558,
       "recognized": 33100
     },
+    "carrot": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/carrot.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999495,
+      "sha256": "2c0e507eadaca4b22259bf81c53b73b38861a4290a5ebc7a515bff156998d48b",
+      "retrieved": "2026-09-12",
+      "records": 46776,
+      "recognized": 44313
+    },
+    "castle": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/castle.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999846,
+      "sha256": "8fae9bdb748ba26691a4b909cee154d1aed9bff6385011e781a953b0445790b9",
+      "retrieved": "2026-09-12",
+      "records": 48099,
+      "recognized": 45836
+    },
     "cat": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/cat.ndjson",
       "requestedBytes": 20000000,
@@ -118,6 +305,15 @@
       "retrieved": "2026-09-12",
       "records": 32102,
       "recognized": 26893
+    },
+    "chair": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/chair.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999849,
+      "sha256": "980827941874746b6e3aa876e276475d52c0b4060bef6c9f51d502f07878eb50",
+      "retrieved": "2026-09-12",
+      "records": 57355,
+      "recognized": 52314
     },
     "clock": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/clock.ndjson",
@@ -137,6 +333,15 @@
       "records": 44172,
       "recognized": 43163
     },
+    "crown": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/crown.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999843,
+      "sha256": "b0280e5d011bf41a2021357e2fc2402bcf845f26fef4515465a36c5b06de595b",
+      "retrieved": "2026-09-12",
+      "records": 53669,
+      "recognized": 51973
+    },
     "cup": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/cup.ndjson",
       "requestedBytes": 20000000,
@@ -154,6 +359,24 @@
       "retrieved": "2026-09-12",
       "records": 33285,
       "recognized": 31362
+    },
+    "donut": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/donut.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999891,
+      "sha256": "5c112bf4db1b3bba82858dafdbae8b6c6c44bae1c6f0f528754e6f8d46143bdd",
+      "retrieved": "2026-09-12",
+      "records": 40718,
+      "recognized": 39630
+    },
+    "drums": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/drums.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999254,
+      "sha256": "c476a7b199b4b9bd9bd21c52b0e1fb7cc4c42bf00865dddf21f29b4f7a272b24",
+      "retrieved": "2026-09-12",
+      "records": 35653,
+      "recognized": 29959
     },
     "elephant": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/elephant.ndjson",
@@ -173,6 +396,33 @@
       "records": 37563,
       "recognized": 36117
     },
+    "eyeglasses": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/eyeglasses.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999767,
+      "sha256": "b2c5462e0beeb736a5d1ffb3dbc9e319c4c300257bbf1004ba279440d047bc04",
+      "retrieved": "2026-09-12",
+      "records": 46446,
+      "recognized": 41967
+    },
+    "face": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/face.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999384,
+      "sha256": "54076206977294e939c29142fcd56aaf211b3afe7e0bc9dbfdfcc7fafca823d7",
+      "retrieved": "2026-09-12",
+      "records": 34431,
+      "recognized": 31635
+    },
+    "fence": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/fence.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999864,
+      "sha256": "398bb5998fb1706cdf364c43b2f3361df6186ee6dacd3293b0df36e3a2c9d351",
+      "retrieved": "2026-09-12",
+      "records": 51484,
+      "recognized": 49619
+    },
     "fish": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/fish.ndjson",
       "requestedBytes": 20000000,
@@ -191,6 +441,42 @@
       "records": 34762,
       "recognized": 33321
     },
+    "fork": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/fork.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999944,
+      "sha256": "8c1660fe081a4787d85d5c4866c02fb15775b0f2b45978784b596c604421f46a",
+      "retrieved": "2026-09-12",
+      "records": 63877,
+      "recognized": 60412
+    },
+    "frog": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/frog.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999728,
+      "sha256": "a927696e077569f617005f98d6ff8187dc0cdfcd14d9ee771ec80ea5ad80d76d",
+      "retrieved": "2026-09-12",
+      "records": 32873,
+      "recognized": 30100
+    },
+    "giraffe": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/giraffe.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999967,
+      "sha256": "9cf47c09853fad7072c1f694881d23723597704af250321987dc50f26f3329f3",
+      "retrieved": "2026-09-12",
+      "records": 41700,
+      "recognized": 40159
+    },
+    "grapes": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/grapes.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999352,
+      "sha256": "85f213230abc2beb6debcd9888d738ffb1321f4f5ed34f33869ba38a51081a66",
+      "retrieved": "2026-09-12",
+      "records": 24371,
+      "recognized": 22455
+    },
     "guitar": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/guitar.ndjson",
       "requestedBytes": 20000000,
@@ -199,6 +485,69 @@
       "retrieved": "2026-09-12",
       "records": 36447,
       "recognized": 33886
+    },
+    "hamburger": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/hamburger.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999529,
+      "sha256": "4db6ea06dc9a55006c09d39dfe7aa9eba1578619ad9b2113b76249ac1bd1bef4",
+      "retrieved": "2026-09-12",
+      "records": 38194,
+      "recognized": 36522
+    },
+    "hammer": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/hammer.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999667,
+      "sha256": "7139908d5a461ddcf703decbe130e998b5e9f53c6879d5c366152c6457ef7efc",
+      "retrieved": "2026-09-12",
+      "records": 52039,
+      "recognized": 48637
+    },
+    "hand": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/hand.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999673,
+      "sha256": "2741bc92599c2b12bc5f85b577f3821beec365321fd07140454802d10beed325",
+      "retrieved": "2026-09-12",
+      "records": 45567,
+      "recognized": 42146
+    },
+    "headphones": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/headphones.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999980,
+      "sha256": "0e99ab61128a07b02813baa454aab5e12350d4cbff58467c6922b1ba8e584d8d",
+      "retrieved": "2026-09-12",
+      "records": 42033,
+      "recognized": 40580
+    },
+    "helicopter": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/helicopter.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999931,
+      "sha256": "1a05ab0233bed61c326b63d97fac1e565ca9f027b7a6f7f760c8ff53d987ad0c",
+      "retrieved": "2026-09-12",
+      "records": 35669,
+      "recognized": 30941
+    },
+    "hot air balloon": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/hot%20air%20balloon.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999863,
+      "sha256": "5bb39f33f10b0bb146cbb59f3a3b50d3adeec1988225fc3f2f6c05dd70351b93",
+      "retrieved": "2026-09-12",
+      "records": 45106,
+      "recognized": 43282
+    },
+    "hourglass": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/hourglass.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999961,
+      "sha256": "cb227c16c70b7869265c701dd3722e432dfd7cd6a1f20052da9ded1a4e5880fa",
+      "retrieved": "2026-09-12",
+      "records": 52694,
+      "recognized": 49931
     },
     "house": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/house.ndjson",
@@ -209,6 +558,15 @@
       "records": 56171,
       "recognized": 54899
     },
+    "ice cream": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/ice%20cream.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999901,
+      "sha256": "4086ea4593307bb62b846dad5dd1335e7d4fea143a748869215f963b39b4e006",
+      "retrieved": "2026-09-12",
+      "records": 50063,
+      "recognized": 48681
+    },
     "key": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/key.ndjson",
       "requestedBytes": 20000000,
@@ -218,6 +576,60 @@
       "records": 47352,
       "recognized": 40960
     },
+    "knife": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/knife.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999858,
+      "sha256": "7905ae08f067e1758b231e8bf0be2f8ab2e44dca3fbe43b180e27724669596ca",
+      "retrieved": "2026-09-12",
+      "records": 62329,
+      "recognized": 54339
+    },
+    "ladder": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/ladder.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999733,
+      "sha256": "ec0a27d0cbcfd51285e4efe90551297d23fe0f4f71c5a7f67e378f3a277288be",
+      "retrieved": "2026-09-12",
+      "records": 62934,
+      "recognized": 61011
+    },
+    "laptop": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/laptop.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999789,
+      "sha256": "3b1fdc509a613db83406dac95fb905b45013d6526e0b3239f17893905eabd830",
+      "retrieved": "2026-09-12",
+      "records": 42607,
+      "recognized": 39096
+    },
+    "leaf": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/leaf.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999802,
+      "sha256": "60a46536f47564f8de0c6c8f969f302eb774bce5ed36a48280a0f5d756f65050",
+      "retrieved": "2026-09-12",
+      "records": 48981,
+      "recognized": 45448
+    },
+    "light bulb": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/light%20bulb.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999930,
+      "sha256": "f15d3e482ce793ce9431a5d314b464d352e32aba41e18046a79203af4ab9adcb",
+      "retrieved": "2026-09-12",
+      "records": 46271,
+      "recognized": 44099
+    },
+    "lighthouse": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/lighthouse.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999957,
+      "sha256": "c0a667938bcafa4bcb76a4d5c2e1d33e2e0037d279138553faf55d69401b0cbb",
+      "retrieved": "2026-09-12",
+      "records": 41128,
+      "recognized": 35585
+    },
     "lightning": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/lightning.ndjson",
       "requestedBytes": 20000000,
@@ -226,6 +638,15 @@
       "retrieved": "2026-09-12",
       "records": 61864,
       "recognized": 57876
+    },
+    "lollipop": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/lollipop.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999885,
+      "sha256": "970b166dfbd8ffc1c9604b75602578664502ca619486f4a700b6b004dd285a86",
+      "retrieved": "2026-09-12",
+      "records": 53845,
+      "recognized": 52017
     },
     "moon": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/moon.ndjson",
@@ -245,6 +666,60 @@
       "records": 70650,
       "recognized": 67813
     },
+    "mushroom": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/mushroom.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999809,
+      "sha256": "218da735f433d9f57c0cd4f0c1209b2b6a9fad4d5cbec0eae87e98ff203a406b",
+      "retrieved": "2026-09-12",
+      "records": 50772,
+      "recognized": 48930
+    },
+    "octopus": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/octopus.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999748,
+      "sha256": "ff8ea85f12ca7e92c46544e88ba1820a756ac87d830abf0fa68ed71f45fdb0e8",
+      "retrieved": "2026-09-12",
+      "records": 36183,
+      "recognized": 34597
+    },
+    "pencil": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/pencil.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999854,
+      "sha256": "fa7bed5f9ee5d20bce88a028c55cdef37ff22b8fe7b960e76446a4e1bfbd130c",
+      "retrieved": "2026-09-12",
+      "records": 57053,
+      "recognized": 51469
+    },
+    "piano": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/piano.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999882,
+      "sha256": "7a600df2e355d8c31735c6f7be87aa6fbcb0e51f0739ea93652c6eb2772c781a",
+      "retrieved": "2026-09-12",
+      "records": 42725,
+      "recognized": 41651
+    },
+    "pig": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/pig.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999720,
+      "sha256": "4b2e177fd0dd924fa48d0b4cb9360d1ee2f12ff0e2a4b704b29ab7798a364a77",
+      "retrieved": "2026-09-12",
+      "records": 28712,
+      "recognized": 25418
+    },
+    "pineapple": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/pineapple.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999594,
+      "sha256": "053d53c1b9c7e384fd2b317ab40576f0069ae962237e41c9be5fbcc3389b25e4",
+      "retrieved": "2026-09-12",
+      "records": 37656,
+      "recognized": 36696
+    },
     "pizza": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/pizza.ndjson",
       "requestedBytes": 20000000,
@@ -263,6 +738,105 @@
       "records": 31205,
       "recognized": 26783
     },
+    "rainbow": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/rainbow.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999895,
+      "sha256": "3ce521b8c106ba7a58e0388dd94a96078c7ff8b9d10d282a9fe0a1d2505b53ab",
+      "retrieved": "2026-09-12",
+      "records": 58869,
+      "recognized": 58130
+    },
+    "sailboat": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/sailboat.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999913,
+      "sha256": "157f6ee20a5ee7616f198e2b1a68637cd3fa37aec88e9ad4e264cb07ed7c26b4",
+      "retrieved": "2026-09-12",
+      "records": 54805,
+      "recognized": 53096
+    },
+    "scissors": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/scissors.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999463,
+      "sha256": "41cc78fb8901e0741471513f6e75934c7dfa198bdb77cfced887f637dfb98b83",
+      "retrieved": "2026-09-12",
+      "records": 39131,
+      "recognized": 35280
+    },
+    "sheep": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/sheep.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999597,
+      "sha256": "a50c44d6e86c83eb6254242f2ef316ce9628a7c7a4b1036d921a6d8344bd8f59",
+      "retrieved": "2026-09-12",
+      "records": 29868,
+      "recognized": 27811
+    },
+    "shoe": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/shoe.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999972,
+      "sha256": "cc30ddfdb7a57d2a15793af2f679092d370e045eeb2a31be1cd5ca24c06473bb",
+      "retrieved": "2026-09-12",
+      "records": 54830,
+      "recognized": 52731
+    },
+    "skull": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/skull.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999490,
+      "sha256": "200001fabfa4bd6457b244200fe8301c3f9ead5df41d88713062b620a73b84d4",
+      "retrieved": "2026-09-12",
+      "records": 33221,
+      "recognized": 31405
+    },
+    "snail": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/snail.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999814,
+      "sha256": "0d2193c307c08c48dec2fe52e018206144bb36b946f45ca5f3f4fa83ddc9b3ca",
+      "retrieved": "2026-09-12",
+      "records": 36646,
+      "recognized": 35207
+    },
+    "snake": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/snake.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19997490,
+      "sha256": "6b16ba34f7b79979ca5e544ca2da283e429494efb3389d99cde1d67f625643ae",
+      "retrieved": "2026-09-12",
+      "records": 52550,
+      "recognized": 49550
+    },
+    "snowflake": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/snowflake.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999769,
+      "sha256": "52c335e0e3cb0aa55534c01a86e0eae04f1b0b020eccdd8befbc3b2230fc9647",
+      "retrieved": "2026-09-12",
+      "records": 48003,
+      "recognized": 46603
+    },
+    "snowman": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/snowman.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999738,
+      "sha256": "35d13c7343b81c9f696812adf13ecce0cee466af5ddc5b659616ec56f4e79f3f",
+      "retrieved": "2026-09-12",
+      "records": 41179,
+      "recognized": 39182
+    },
+    "spider": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/spider.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999880,
+      "sha256": "6fe17258a15c05d09ed0df63ef5977aafa4257118dbb0411700d5d9dc1995a50",
+      "retrieved": "2026-09-12",
+      "records": 34729,
+      "recognized": 31198
+    },
     "star": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/star.ndjson",
       "requestedBytes": 20000000,
@@ -271,6 +845,24 @@
       "retrieved": "2026-09-12",
       "records": 61201,
       "recognized": 59029
+    },
+    "stop sign": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/stop%20sign.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999778,
+      "sha256": "9779cf466055d48cc2b4036cca3bfa8baca55f1a1dd69250fba1e8a0dce86e83",
+      "retrieved": "2026-09-12",
+      "records": 40398,
+      "recognized": 38716
+    },
+    "strawberry": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/strawberry.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999439,
+      "sha256": "256236512126ba3c0644dfea2b5d4cb2379f417a56baf4c0e0afe2e12a7dd47f",
+      "retrieved": "2026-09-12",
+      "records": 36269,
+      "recognized": 35196
     },
     "sun": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/sun.ndjson",
@@ -290,6 +882,60 @@
       "records": 57904,
       "recognized": 55840
     },
+    "teapot": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/teapot.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999992,
+      "sha256": "b3444b6e1c2919c41679f626613a750d3531d4180ae63596f91188b2a77895be",
+      "retrieved": "2026-09-12",
+      "records": 41921,
+      "recognized": 39664
+    },
+    "tooth": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/tooth.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999493,
+      "sha256": "9a378c93dadb3b728b0e5f847de8a370dbbbb1fb8c96a261e980662624bd100a",
+      "retrieved": "2026-09-12",
+      "records": 53231,
+      "recognized": 48802
+    },
+    "toothbrush": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/toothbrush.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999754,
+      "sha256": "b6db11f77e1bbc51fc8c5c82fb66ab714cbcd4a503fe63d47b7ee36322735876",
+      "retrieved": "2026-09-12",
+      "records": 51063,
+      "recognized": 48394
+    },
+    "tornado": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/tornado.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999647,
+      "sha256": "4860657d664d5747543651a12ec389ddc764473f667c1a6118b0d1a2867d5557",
+      "retrieved": "2026-09-12",
+      "records": 24984,
+      "recognized": 24126
+    },
+    "traffic light": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/traffic%20light.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999991,
+      "sha256": "cb813f53c9e216149a544cd2756563fbffe14d4bad0e2f96185901883076526d",
+      "retrieved": "2026-09-12",
+      "records": 40789,
+      "recognized": 38970
+    },
+    "train": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/train.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999494,
+      "sha256": "bf28eaa64e197e956efb81d02b3c091ac1d2b9dae203306534610aba936e18a5",
+      "retrieved": "2026-09-12",
+      "records": 30451,
+      "recognized": 27034
+    },
     "tree": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/tree.ndjson",
       "requestedBytes": 20000000,
@@ -299,6 +945,15 @@
       "records": 36130,
       "recognized": 34580
     },
+    "trumpet": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/trumpet.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999885,
+      "sha256": "50e3e136abb8fe5d42715b057bc9243aeadd85815c0d393e9f3480896b308127",
+      "retrieved": "2026-09-12",
+      "records": 44937,
+      "recognized": 38996
+    },
     "umbrella": {
       "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/umbrella.ndjson",
       "requestedBytes": 20000000,
@@ -307,6 +962,51 @@
       "retrieved": "2026-09-12",
       "records": 50459,
       "recognized": 48969
+    },
+    "watermelon": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/watermelon.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999717,
+      "sha256": "6d05481f6b867429f81b4dccdcf41a58681e4843c245a3fb00df525e74b58239",
+      "retrieved": "2026-09-12",
+      "records": 41357,
+      "recognized": 38701
+    },
+    "whale": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/whale.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999556,
+      "sha256": "2890313503b2e55b917eb1ac263b5b59bc96731898ee587bbdcd51f64838a79d",
+      "retrieved": "2026-09-12",
+      "records": 41263,
+      "recognized": 38630
+    },
+    "windmill": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/windmill.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999341,
+      "sha256": "d7ed90ab29a9d19bb0af0cd3f9a769675f0e36da71df9029278bc28cdd3afa63",
+      "retrieved": "2026-09-12",
+      "records": 39445,
+      "recognized": 37389
+    },
+    "wine bottle": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/wine%20bottle.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999863,
+      "sha256": "17e4fc4aa5c00e6a39e5e366fece0208cda6906a57fbd1d09ea7c43190270e33",
+      "retrieved": "2026-09-12",
+      "records": 61704,
+      "recognized": 59243
+    },
+    "zebra": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/full/simplified/zebra.ndjson",
+      "requestedBytes": 20000000,
+      "bytes": 19999618,
+      "sha256": "8c8c3ba7ac5815f236d7851ae35d14dd8125952c3f8dff1d2e04d906b2c25c64",
+      "retrieved": "2026-09-12",
+      "records": 29952,
+      "recognized": 26375
     }
   }
 }
