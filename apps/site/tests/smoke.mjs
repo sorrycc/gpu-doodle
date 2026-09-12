@@ -72,8 +72,12 @@ try {
   }));
 
   await page.click("#play");
+  // The canvas reset reaches the stroke counter through the rAF-coalesced
+  // result path, one frame after the prompt block appears.
   await page.waitForFunction(
-    () => document.querySelector(".game-live").hidden === false,
+    () =>
+      document.querySelector(".game-live").hidden === false &&
+      document.getElementById("strokes").textContent === "0 笔",
     null,
     { timeout: 2_000 },
   );

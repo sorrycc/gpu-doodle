@@ -1,6 +1,6 @@
 {
   "name": "gpu-doodle",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A compact neural doodle classifier for the browser",
   "type": "module",
   "main": "./dist/index.js",
@@ -18,8 +18,10 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "echo 'build: stage 4' && exit 0",
-    "build:release": "echo 'size gate: stage 7' && exit 0",
+    "build": "node --experimental-strip-types scripts/build.ts --report-only",
+    "build:release": "node --experimental-strip-types scripts/build.ts",
+    "prepack": "pnpm build",
+    "check:package": "pnpm build && node --experimental-strip-types scripts/check-package.ts",
     "test": "vitest run --passWithNoTests",
     "fixture:parity": "node --experimental-strip-types scripts/fetch-parity-fixture.ts cat 120",
     "test:browser": "node --experimental-strip-types test/browser.ts",
@@ -28,10 +30,13 @@
   "devDependencies": {
     "@types/node": "24.13.3",
     "@webgpu/types": "0.1.72",
+    "esbuild": "0.28.2",
     "playwright": "1.63.0",
+    "terser": "5.51.2",
     "typescript": "5.9.3",
     "vite": "7.3.6",
-    "vitest": "4.1.11"
+    "vitest": "4.1.11",
+    "wgslender": "1.4.1"
   },
   "keywords": [
     "doodle",
@@ -39,5 +44,10 @@
     "quickdraw",
     "webgpu"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sorrycc/gpu-doodle"
+  },
+  "author": "chencheng (sorrycc)"
 }

@@ -20,6 +20,18 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Build publishable core
+        run: pnpm build:core
       - name: Type check
         run: pnpm check
-      # Later stages add: build:core, test:core, size:gate.
+      - name: Core tests
+        run: pnpm test:core
+      - name: Inspect npm package contents
+        run: pnpm check:package
+      - name: Release size gate
+        run: pnpm size:gate
+      - name: Site build
+        run: pnpm --filter @gpu-doodle/site build
+      # Training checks need uv, PyTorch and the featurized data; the browser
+      # parity test and the site smoke test need Chrome with WebGPU. Both run
+      # locally: `pnpm test:training`, `pnpm test:browser`, `pnpm site:smoke`.

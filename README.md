@@ -2,7 +2,7 @@
 
 An experimental doodle classifier that runs in the browser on WebGPU. A tiny sequence model reads pen strokes and guesses what you are drawing while you draw it. Trained on the [Quick, Draw! dataset](https://github.com/googlecreativelab/quickdraw-dataset) by Google (CC BY 4.0).
 
-See `PLAN.md` for the design and `AGENTS.md` for the working rules.
+See `PLAN.md` for the design, `MODEL_CARD.md` for the shipped model's provenance, metrics and limitations, and `AGENTS.md` for the working rules.
 
 ## Development
 
@@ -35,13 +35,33 @@ classifier.dispose();
 
 `pnpm test:browser` checks the WGSL kernel against the CPU reference on 10,000 test sketches in headless Chrome and against PyTorch logits on 512 of them.
 
+## Package build
+
+```sh
+pnpm build:core      # packages/core/dist: one ESM entry with the minified kernel and int6 weights inlined, plus declarations and size.json
+pnpm size:gate       # same build, fails when the entry exceeds 50,000 Brotli bytes
+pnpm check:package   # npm pack, install into a throwaway consumer, type-check and run it
+```
+
+The shipped entry is 22,238 Brotli bytes (45,168 minified). The WGSL file never ships: the build splices the model constants into it, minifies it with wgslender and inlines the string next to the weight table.
+
 ## Demo
 
 ```sh
-pnpm site:dev      # Vite dev server for apps/site
+pnpm site:dev      # builds packages/core, then the Vite dev server for apps/site
 pnpm site:smoke    # headless Chrome: draw a circle, expect a ranked guess list
 ```
 
+The site consumes the built package, the same bundle npm ships, so `site:dev`, `site:build` and `site:smoke` build `packages/core` first.
+
 The page draws on a canvas, guesses while you draw, and has a prompt mode in the spirit of the original Quick, Draw!: twenty seconds to draw a named category, next round when the top guess matches. It runs the WebGPU kernel when the browser has one and falls back to the CPU path otherwise.
 
-Stages done: workspace and data (1), shared preprocessing with a parity test against Google's simplified output (2), model and training loop (3), int6 export with a gated promotion and a CPU reference checked against PyTorch logits (4), the WGSL kernel with browser parity and backend selection (5), the site (6). The package build and size gate follow.
+## Repository
+
+- `packages/core`: publishable browser package, WGSL kernel, CPU reference, shared preprocessing, build
+- `packages/training`: data fetch and build, PyTorch training, evaluation, gated export, provenance
+- `apps/site`: the demo
+
+## License
+
+MIT. Training data is Google's Quick, Draw! dataset, CC BY 4.0; the site, this README and `MODEL_CARD.md` credit it.

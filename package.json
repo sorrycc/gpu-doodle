@@ -5,7 +5,7 @@
   "packageManager": "pnpm@11.15.1",
   "scripts": {
     "test": "pnpm test:core && pnpm test:training && pnpm test:site",
-    "test:site": "pnpm --filter @gpu-doodle/site check",
+    "test:site": "pnpm build:core && pnpm --filter @gpu-doodle/site check",
     "test:training": "pnpm --filter @gpu-doodle/training test",
     "test:core": "pnpm --filter gpu-doodle test",
     "test:browser": "pnpm --filter gpu-doodle test:browser",
@@ -16,11 +16,12 @@
     "data:build": "pnpm --filter @gpu-doodle/training data:build",
     "train": "pnpm --filter @gpu-doodle/training train",
     "export": "pnpm --filter @gpu-doodle/training export",
-    "site:dev": "pnpm --filter @gpu-doodle/site dev",
-    "site:build": "pnpm --filter @gpu-doodle/site build",
-    "site:smoke": "pnpm --filter @gpu-doodle/site test:smoke",
+    "site:dev": "pnpm build:core && pnpm --filter @gpu-doodle/site dev",
+    "site:build": "pnpm build:core && pnpm --filter @gpu-doodle/site build",
+    "site:smoke": "pnpm build:core && pnpm --filter @gpu-doodle/site test:smoke",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check:package": "pnpm --filter gpu-doodle check:package"
   },
   "devDependencies": {
     "prettier": "3.9.6",
