@@ -22,13 +22,15 @@
     "build:release": "echo 'size gate: stage 7' && exit 0",
     "test": "vitest run --passWithNoTests",
     "fixture:parity": "node --experimental-strip-types scripts/fetch-parity-fixture.ts cat 120",
-    "test:browser": "echo 'browser parity: stage 5' && exit 0",
+    "test:browser": "node --experimental-strip-types test/browser.ts",
     "check": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "24.13.3",
     "@webgpu/types": "0.1.72",
+    "playwright": "1.63.0",
     "typescript": "5.9.3",
+    "vite": "7.3.6",
     "vitest": "4.1.11"
   },
   "keywords": [

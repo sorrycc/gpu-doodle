@@ -144,6 +144,23 @@ simplified 记录比预想小得多，20 MB 前缀给了每类 3 万到 7 万张
 
 导出源码快照在 `exports/0d4f8a779637…/source/`。评估在 CPU 上用顺序扫描跑全部 valid 与 test，一次导出约 150 秒。
 
+## 阶段 5 结果
+
+`kernel.wgsl` 按 `cpu.ts` 的阶段和累加顺序逐段重写：一个 workgroup 一张涂鸦，64 个 lane 对应 64 个隐藏通道，输入投影、宽 5 卷积、门控与正反向扫描、combine 与 mean/max 池化、头层与输出，只回读 logits。`shader-source.ts` 在编译前把张量偏移、维度常量、状态类型和 rounded() 的函数体拼进去，所以模型变了 WGSL 不用改。`gpu.ts` 从 gpu-time 搬来设备管理、grow-only buffer 与一次性设备丢失恢复。`defineClassifier({ backend })` 提供 cpu / webgpu / auto 三种后端，auto 在一批不少于 32 张时走 WebGPU，其余走 CPU；`classify` 保持同步 CPU，因为单张 0.6 ms 已经比 GPU 的 dispatch 和回读快。
+
+`pnpm test:browser` 用 Playwright 起无头 Chrome，把 test split 前 10,000 张同时在 GPU 和 CPU 上打分，前 512 张再对照 PyTorch fixture，之后销毁设备验证恢复，最后跑 `defineClassifier` 的三种后端。记录在 `packages/training/results/parity-gpu.json`：
+
+| 指标                                     | 值                 |
+| ---------------------------------------- | ------------------ |
+| 序列 / 点                                | 10,000 / 387,598   |
+| GPU 与 CPU argmax 不一致                 | 0                  |
+| GPU 与 PyTorch argmax 不一致（512 张）   | 0                  |
+| 最大 logit 误差，GPU 对 CPU / 对 PyTorch | 6.4e-06 / 5.2e-06  |
+| 10,000 张耗时，GPU / CPU（浏览器内）     | 137 ms / 5760 ms   |
+| 设备丢失后恢复                           | 1 次，误差 1.7e-06 |
+
+Chrome 148.0.7778.179，Apple Silicon。GPU 时间含上传、dispatch 与回读，每 512 张一次 dispatch。
+
 ## 站点
 
 Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，每次抬笔调用一次 classify，显示 top-3 和概率条，类别名中英双语。加一个「随机题目」按钮：给一个词让用户画，猜中就下一题，这是原版 Quick Draw 的传播形态。页脚署名 Google Quick Draw 数据集。
@@ -154,7 +171,7 @@ Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，每次抬笔调�
 2. preprocess.ts 与一致性测试。已完成。
 3. model.py、train.py、dataset.py，跑通一次 5 epoch 看曲线。已完成，结果见 `packages/training/runs/stage3-baseline/report.json`。
 4. export.py、cpu.ts、decode.ts，CPU 与 PyTorch parity。已完成，见下。
-5. kernel.wgsl、gpu.ts、test:browser。
+5. kernel.wgsl、gpu.ts、test:browser。已完成，见上。
 6. 站点 demo。
 7. size:gate、CI、README、MODEL_CARD。
 

@@ -15,7 +15,7 @@ pnpm export -- --checkpoint runs/experiment/best.pt
 pnpm test
 ```
 
-The CPU path works end to end today:
+One sketch at a time runs on the CPU, which is the faster path for a single drawing:
 
 ```ts
 import { classify } from "gpu-doodle";
@@ -24,4 +24,15 @@ classify(strokes, { topK: 3 });
 // [{ label: "cat", labelZh: "猫", probability: 0.91, index: 8 }, ...]
 ```
 
-Stages done: workspace and data (1), shared preprocessing with a parity test against Google's simplified output (2), model and training loop (3), int6 export with a gated promotion and a CPU reference checked against PyTorch logits (4). The WGSL kernel, the site, and the size gate follow.
+Batches can run on WebGPU through a reusable instance. `"auto"` scores batches of 32 or more on the GPU and everything else on the CPU; `"webgpu"` disables the CPU fallback, so the caller owns the no-WebGPU case.
+
+```ts
+import { defineClassifier } from "gpu-doodle";
+const classifier = await defineClassifier({ backend: "auto" });
+const guesses = await classifier.classifyMany(drawings, { topK: 3 });
+classifier.dispose();
+```
+
+`pnpm test:browser` checks the WGSL kernel against the CPU reference on 10,000 test sketches in headless Chrome and against PyTorch logits on 512 of them.
+
+Stages done: workspace and data (1), shared preprocessing with a parity test against Google's simplified output (2), model and training loop (3), int6 export with a gated promotion and a CPU reference checked against PyTorch logits (4), the WGSL kernel with browser parity and backend selection (5). The site and the size gate follow.

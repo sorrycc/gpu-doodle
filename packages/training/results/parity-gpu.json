@@ -1,0 +1,27 @@
+{
+  "model": "0d4f8a7796370fe6102c3b45e1c29787ffb757ce3f1ccde3562eaaed2562b1c6",
+  "browser": "148.0.7778.179",
+  "classifier": {
+    "sequences": 1000,
+    "mismatches": 0,
+    "gpuBackend": "webgpu",
+    "autoSmall": "cpu",
+    "autoLarge": "webgpu",
+    "partialSumsToOne": true
+  },
+  "sequences": 10000,
+  "points": 387598,
+  "pythonSequences": 512,
+  "maxError": 0.000006407499313354492,
+  "pythonMaxError": 0.000005245208740234375,
+  "mismatches": 0,
+  "pythonMismatches": 0,
+  "top1": 0.9139,
+  "gpuMilliseconds": 136.79999995231628,
+  "cpuMilliseconds": 5759.599999189377,
+  "elapsedMilliseconds": 5900,
+  "recoveryError": 0.0000016689300537109375,
+  "recoveries": 1,
+  "submissions": 21,
+  "emptyIsUndefined": true
+}
