@@ -1,0 +1,13 @@
+{
+  "name": "@gpu-doodle/site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'site: stage 6' && exit 0",
+    "check": "echo 'site: stage 6' && exit 0"
+  },
+  "dependencies": {
+    "gpu-doodle": "workspace:*"
+  }
+}

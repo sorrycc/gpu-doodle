@@ -1,0 +1,24 @@
+{
+  "name": "gpu-doodle-monorepo",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.15.1",
+  "scripts": {
+    "test": "pnpm test:core",
+    "test:core": "pnpm --filter gpu-doodle test",
+    "test:browser": "pnpm --filter gpu-doodle test:browser",
+    "check": "pnpm -r check",
+    "build:core": "pnpm --filter gpu-doodle build",
+    "size:gate": "pnpm --filter gpu-doodle build:release",
+    "data:fetch": "pnpm --filter @gpu-doodle/training data:fetch",
+    "train": "pnpm --filter @gpu-doodle/training train",
+    "export": "pnpm --filter @gpu-doodle/training export",
+    "site:dev": "pnpm --filter @gpu-doodle/site dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.9.6",
+    "tsx": "4.23.13"
+  }
+}

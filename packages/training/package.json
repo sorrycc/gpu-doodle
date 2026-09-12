@@ -1,0 +1,12 @@
+{
+  "name": "@gpu-doodle/training",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data:fetch": "uv run --project . python torch/fetch.py",
+    "train": "uv run --project . python torch/train.py",
+    "export": "uv run --project . python torch/export.py",
+    "check": "echo 'training: no typescript' && exit 0"
+  }
+}

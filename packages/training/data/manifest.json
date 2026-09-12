@@ -1,0 +1,370 @@
+{
+  "source": "Google Quick, Draw! dataset, Sketch-RNN packages",
+  "license": "CC BY 4.0",
+  "attribution": "https://github.com/googlecreativelab/quickdraw-dataset",
+  "format": "stroke-3 [dx, dy, pen_lift], Quick Draw 0-255 space, RDP epsilon 2.0",
+  "classes": [
+    "airplane",
+    "apple",
+    "banana",
+    "bicycle",
+    "bird",
+    "book",
+    "butterfly",
+    "car",
+    "cat",
+    "clock",
+    "cloud",
+    "cup",
+    "dog",
+    "elephant",
+    "eye",
+    "fish",
+    "flower",
+    "guitar",
+    "house",
+    "key",
+    "lightning",
+    "moon",
+    "mountain",
+    "pizza",
+    "rabbit",
+    "star",
+    "sun",
+    "t-shirt",
+    "tree",
+    "umbrella"
+  ],
+  "files": {
+    "airplane": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/airplane.npz",
+      "bytes": 11601327,
+      "sha256": "dbcf34d0dbeb474b8ed098aff6211b0a7a2c85fe5d866b55c9e7d440e106e24f",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "apple": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/apple.npz",
+      "bytes": 8021079,
+      "sha256": "91ce5826f20b009da02fe537d483c8969d7b27d8cef7495bfa984272714517d2",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "banana": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/banana.npz",
+      "bytes": 7204690,
+      "sha256": "576c858dc7e03d931c1260c605337e8b02d89aec8a14568acaccfd6f5d221ffd",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "bicycle": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/bicycle.npz",
+      "bytes": 14511843,
+      "sha256": "31b439b8b0a78eb7b26153bb883032d1365c9e865269226fa0d19abbb57bcd05",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "bird": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/bird.npz",
+      "bytes": 12494423,
+      "sha256": "f6e0cd0975e245e3c6345f1f519a999a6619493b35aef2a290f96fa90f076de3",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "book": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/book.npz",
+      "bytes": 11481465,
+      "sha256": "02770d8b4f982b50431dae43dda36062388c4ab53d4db63a4fbf3c06a81d9f0c",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "butterfly": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/butterfly.npz",
+      "bytes": 13808540,
+      "sha256": "924737f275f73df45d5fbba30339edbfd3d781d30087620fd33f1f6b132cc692",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "car": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/car.npz",
+      "bytes": 14481709,
+      "sha256": "26750ae1c2d3064fcfd74568adebb98ed4958ea2e6a02c330d6d9e65978d96b5",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "cat": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/cat.npz",
+      "bytes": 14842947,
+      "sha256": "b623cbce910eb6007261ee018a9ffde902a7ce5f2e060ac9e916d14bc5e5b614",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "clock": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/clock.npz",
+      "bytes": 9264242,
+      "sha256": "24b054648d85306bcf06078910ec96947a69c48c5c9463f1726bc95d43b19492",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "cloud": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/cloud.npz",
+      "bytes": 11882216,
+      "sha256": "af880caa628087c0036be1ab01011f3fb4139feafeca5b972e2308dd1020ae26",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "cup": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/cup.npz",
+      "bytes": 7810569,
+      "sha256": "24eb7f48e1a26a6b280dd08461cc4cff40bc923237a9437ffbb247a1df9c418d",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "dog": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/dog.npz",
+      "bytes": 15593402,
+      "sha256": "ee9b1ffad4df521f206f606ea72aff30d427a13b7014f2a37d76904648d4f190",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "elephant": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/elephant.npz",
+      "bytes": 17592812,
+      "sha256": "b09daded6872828a0a39e5a82c87cc3e74ab47235a19d16274e55b52f27804d1",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "eye": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/eye.npz",
+      "bytes": 11995012,
+      "sha256": "40ecdf3e42ba71bfc21b7d0963f7356c93994e7b059db356948ed990b67c741f",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "fish": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/fish.npz",
+      "bytes": 8159962,
+      "sha256": "4c044b149885e4c92a5e2838ba310b9eb0b670902de4f389ac8ab67f4ac0fb9c",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "flower": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/flower.npz",
+      "bytes": 13873041,
+      "sha256": "885ec725e49132886b916b8189bd5c9b04b9efb1dc109019b28f97dc88c9cd82",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "guitar": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/guitar.npz",
+      "bytes": 15700945,
+      "sha256": "8a85937ec79a0c2828210df6bd2745b06c1e87ddf0f6867ff44b29572543ca21",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "house": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/house.npz",
+      "bytes": 7957854,
+      "sha256": "3205d2aff3c48fd68362b60406fbbf695c98cb2398e1789a7ecce9a775e2ee63",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "key": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/key.npz",
+      "bytes": 9466418,
+      "sha256": "27b94c916287a3bdad3a359da9a2b36c897dbcd6178d5109dd22a5a959a94438",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "lightning": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/lightning.npz",
+      "bytes": 6823521,
+      "sha256": "fd3f79ea7bf784b9e2404aff9592994a79f5e121f051db40016fb7b8f48d705f",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "moon": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/moon.npz",
+      "bytes": 8134602,
+      "sha256": "1c69babe96fba0c764f924aac17d094120ad05335e1936722115cb565dc44916",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "mountain": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/mountain.npz",
+      "bytes": 5847486,
+      "sha256": "a070e8c2e95c1f550f4739b0a25043e6d4b4cee75b1b9c2e25d3f0b398d5a1b0",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "pizza": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/pizza.npz",
+      "bytes": 16685734,
+      "sha256": "024d5666020694bd1a8a17f2a68b2c41a3b6538f76169cdaae2e03bef3198f60",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "rabbit": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/rabbit.npz",
+      "bytes": 15567048,
+      "sha256": "2de7d0b4d9eedc8cbdaaf6b024e5c016c1158ed9803f2b599a71a7b44aeccca8",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "star": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/star.npz",
+      "bytes": 6570161,
+      "sha256": "e88c55c314ac60a9f1093a05a45b50ad6eab113b778e09ec5f4bea4c4226b63f",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "sun": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/sun.npz",
+      "bytes": 12279395,
+      "sha256": "c2341c4c099479dbd3740fea806258fb8b9f750974280335bb90f610c3485d6f",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "t-shirt": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/t-shirt.npz",
+      "bytes": 7560301,
+      "sha256": "e118ce7c89f8261b3ed72e7acf6d71292ec8b38f18884d68b1a1608e708630cc",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "tree": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/tree.npz",
+      "bytes": 14432744,
+      "sha256": "f1bb733b49aabca05fd6417ed28cfabb45f22156cc0b7d23545d7b73230da855",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    },
+    "umbrella": {
+      "url": "https://storage.googleapis.com/quickdraw_dataset/sketchrnn/umbrella.npz",
+      "bytes": 8781541,
+      "sha256": "c3aab9ce679839a6c42f7f8d40fa9e16610f67cf3ed42695910c6a96d9454f85",
+      "retrieved": "2026-09-12",
+      "sequences": {
+        "train": 70000,
+        "valid": 2500,
+        "test": 2500
+      }
+    }
+  }
+}

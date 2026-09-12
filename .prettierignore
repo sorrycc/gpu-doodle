@@ -1,0 +1,6 @@
+pnpm-lock.yaml
+dist
+node_modules
+packages/training/data
+packages/training/runs
+packages/training/active
