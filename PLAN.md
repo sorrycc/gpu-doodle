@@ -136,6 +136,14 @@ simplified 记录比预想小得多，20 MB 前缀给了每类 3 万到 7 万张
 
 导出门禁：候选 test top-1 严格高于已发布权重，每类准确率在两比例 z=1.96 容忍内不回退，前 3 笔准确率不回退。`--force` 记录覆盖。
 
+## 阶段 4 结果
+
+`export.py` 把 `runs/stage3-baseline/best.pt` 导出为 int6：27,742 参数，`weights.gen.ts` 29,544 字节，Brotli 16,269 字节。解码后的权重在 test 上 top-1 93.6%、前 3 笔 81.0%，与 f32 checkpoint 一致。首次导出没有已发布基线，用 `--force` 通过门禁，报告里记录了被覆盖的失败项。
+
+`cpu.ts` 是标量参考实现，`featurize` 与 `Dataset.features_of` 对齐。512 条 test 序列的 CPU 与 PyTorch parity：argmax 全部一致，logits 最大绝对误差 4.8e-6，每张约 0.6 ms。`model-parity.test.ts` 同时校验 `weights.gen.ts` 的 sha256 与 `export-report.json` 一致。
+
+导出源码快照在 `exports/0d4f8a779637…/source/`。评估在 CPU 上用顺序扫描跑全部 valid 与 test，一次导出约 150 秒。
+
 ## 站点
 
 Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，每次抬笔调用一次 classify，显示 top-3 和概率条，类别名中英双语。加一个「随机题目」按钮：给一个词让用户画，猜中就下一题，这是原版 Quick Draw 的传播形态。页脚署名 Google Quick Draw 数据集。
@@ -145,7 +153,7 @@ Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，每次抬笔调�
 1. 骨架：monorepo、AGENTS.md、gitignore、CI 占位、fetch.py 下载 30 类。
 2. preprocess.ts 与一致性测试。已完成。
 3. model.py、train.py、dataset.py，跑通一次 5 epoch 看曲线。已完成，结果见 `packages/training/runs/stage3-baseline/report.json`。
-4. export.py、cpu.ts、decode.ts，CPU 与 PyTorch parity。
+4. export.py、cpu.ts、decode.ts，CPU 与 PyTorch parity。已完成，见下。
 5. kernel.wgsl、gpu.ts、test:browser。
 6. 站点 demo。
 7. size:gate、CI、README、MODEL_CARD。

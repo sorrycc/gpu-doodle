@@ -15,6 +15,7 @@ packages/training/runs/*
 !packages/training/runs/.gitkeep
 packages/training/runs/**/*.pt
 packages/training/exports/*
+!packages/training/exports/0d4f8a7796370fe6102c3b45e1c29787ffb757ce3f1ccde3562eaaed2562b1c6/
 packages/training/active/*.npz
 
 __pycache__

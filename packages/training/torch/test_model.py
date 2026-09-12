@@ -13,7 +13,8 @@ import numpy as np
 import torch
 
 from dataset import FEATURES, split_of, to_stroke3
-from model import CLASSES, HIDDEN, DoodleTagger, affine_scan, sequential_scan
+from export import decode, encode
+from model import CLASSES, HIDDEN, DoodleTagger, affine_scan, quantize, sequential_scan
 
 ROOT = Path(__file__).resolve().parent.parent
 FIXTURE = ROOT.parent / "core" / "test" / "fixtures" / "quickdraw-cat-parity.json"
@@ -69,6 +70,29 @@ def check_stroke3():
             assert len(lifts) == len(pair["simplified"])
 
 
+def check_wire_roundtrip():
+    """Decoding the int6 wire form must reproduce the exported quantization exactly."""
+    torch.manual_seed(2)
+    model = DoodleTagger().eval()
+    encoded, segments = encode(model, 6)
+    assert len(encoded) == model.parameter_count()
+    decoded = decode(encoded, segments)
+    for name, parameter in model.named_parameters():
+        # The exporter's rounding must agree with the fake quantization used in QAT.
+        expected = quantize(parameter.detach(), 6)
+        assert torch.allclose(decoded[name], expected, atol=1e-6), name
+    # The decoded model is what ships; its logits must not depend on the scan.
+    restored = DoodleTagger().eval()
+    restored.load_state_dict(decoded)
+    features = torch.randn(2, 30, 8)
+    valid = torch.ones(2, 30, dtype=torch.bool)
+    with torch.no_grad():
+        parallel = restored(features, valid)
+        restored.reference_scan = True
+        sequential = restored(features, valid)
+    assert (parallel - sequential).abs().max() < 1e-4
+
+
 def check_split():
     counts = {"train": 0, "valid": 0, "test": 0}
     for key in range(20000):
@@ -78,7 +102,7 @@ def check_split():
 
 
 if __name__ == "__main__":
-    for check in (check_scan, check_parameters, check_padding_invariance, check_stroke3, check_split):
+    for check in (check_scan, check_parameters, check_padding_invariance, check_stroke3, check_wire_roundtrip, check_split):
         check()
         print(f"ok {check.__name__}")
     sys.exit(0)
