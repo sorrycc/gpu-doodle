@@ -4,14 +4,14 @@
 
 ## 已定决策
 
-| 项     | 决定                                                                     |
-| ------ | ------------------------------------------------------------------------ |
-| 输入   | 笔画点序列（stroke-3：Δx、Δy、抬笔），不是位图                           |
-| 类别   | 第一版 30 类，见下表，可增删                                             |
-| 推理   | 手写 WGSL，零依赖，权重内联                                              |
-| 目录   | ~/Projects/gpu-doodle，pnpm monorepo                                     |
-| Python | uv 钉 3.13，与 gpu-time 一致                                             |
-| 数据   | sketchrnn/<class>.npz（每类约 15 MB，已切 70k/2.5k/2.5k，已做 RDP 简化） |
+| 项     | 决定                                                                                        |
+| ------ | ------------------------------------------------------------------------------------------- |
+| 输入   | 笔画点序列（stroke-3：Δx、Δy、抬笔），不是位图                                              |
+| 类别   | 第一版 30 类，见下表，可增删                                                                |
+| 推理   | 手写 WGSL，零依赖，权重内联                                                                 |
+| 目录   | ~/Projects/gpu-doodle，pnpm monorepo                                                        |
+| Python | uv 钉 3.13，与 gpu-time 一致                                                                |
+| 数据   | full/simplified/<class>.ndjson 前 20 MB 前缀（阶段 3 决定；每类 3 万到 7 万张，非随机样本） |
 
 ## 目录结构
 
@@ -38,13 +38,13 @@ gpu-doodle/
 ├── packages/training/
 │   ├── pyproject.toml             torch、numpy
 │   ├── torch/
-│   │   ├── fetch.py               下载 npz，校验 sha256，写 data/manifest.json
-│   │   ├── dataset.py             npz → 归一化 → 定长 bucket（64/128/256 点）
+│   │   ├── fetch.py               Range 下载 simplified ndjson 前缀，校验 sha256，写 data/manifest.json
+│   │   ├── dataset.py             recognized 过滤 → key_id 哈希切分 → toStroke3 同款差分 → bucket 64/128
 │   │   ├── model.py               DoodleTagger，改自 TimeTagger
 │   │   ├── train.py               改自 gpu-time：QAT、余弦退火、源码快照
 │   │   ├── export.py              改自 gpu-time：int6 编码、导出门禁、parity fixture
 │   │   └── evaluate.py            按类准确率、混淆对、前 k 笔准确率
-│   ├── data/                      npz 忽略；manifest.json、classes.json 跟踪
+│   ├── data/                      simplified/ 与 synth/ 忽略；manifest.json、classes.json 跟踪
 │   ├── active/                    export-report.json、parity.* fixture
 │   └── runs/                      report.json 与 source/ 快照跟踪，.pt 忽略
 └── apps/site/                     Vite + TS，canvas 画板，边画边猜
@@ -60,7 +60,7 @@ gpu-doodle/
 | model.py 的仿射扫描、quantize、half_storage                         | 直接搬                                                             |
 | tokenizer.ts、labels.ts 的角色体系、compile/resolve/rrule、calendar | 全部不要                                                           |
 | kernel.wgsl                                                         | 重写，结构见下                                                     |
-| featurize.ts                                                        | 不要，npz 已是数值，直接在 Python 里读                             |
+| featurize.ts                                                        | 不要，ndjson 在 dataset.py 里差分编码，几何不进 Python             |
 
 ## 模型设计
 
@@ -112,7 +112,17 @@ Quick Draw 官方的 `full/simplified` 数据是四步流程的产物：对齐�
 
 apple, banana, bicycle, bird, book, butterfly, cat, car, clock, cloud, cup, dog, elephant, eye, fish, flower, guitar, house, key, lightning, moon, mountain, pizza, rabbit, star, sun, tree, umbrella, airplane, t-shirt
 
-每类 npz 约 15 MB，共约 450 MB，git 忽略，`fetch.py` 记录 sha256 到 manifest.json。训练每 epoch 从 70k/类里随机抽 20k/类（60 万条），验证用 valid split，测试用 test split，只在最后报告时碰 test。
+阶段 3 实际数据（`full/simplified` 每类前 20 MB，共 572 MB，git 忽略，`fetch.py` 记录 sha256）：
+
+| 项                   | 值                                                   |
+| -------------------- | ---------------------------------------------------- |
+| 记录数               | 1,333,226，其中 recognized 1,248,415                 |
+| 每类记录             | 30,408 到 70,650，不均衡                             |
+| 丢弃                 | 未识别 84,811；超过 128 点 3,520                     |
+| train / valid / test | 1,120,607 / 62,248 / 62,040（按 key_id 哈希 90/5/5） |
+| 平均点数             | 39.6，bucket 只留 64 / 128                           |
+
+simplified 记录比预想小得多，20 MB 前缀给了每类 3 万到 7 万张，而不是 1.5 万。每 epoch 默认用全部 train，`--samples` 可以封顶。类别不均衡（最多 2.5 倍）第一版没有做重采样。
 
 ## 评测
 
@@ -134,7 +144,7 @@ Vite + 原生 TS，一个 canvas，pointer 事件收集笔画，每次抬笔调�
 
 1. 骨架：monorepo、AGENTS.md、gitignore、CI 占位、fetch.py 下载 30 类。
 2. preprocess.ts 与一致性测试。已完成。
-3. model.py、train.py、dataset.py，跑通一次 5 epoch 看曲线。
+3. model.py、train.py、dataset.py，跑通一次 5 epoch 看曲线。已完成，结果见 `packages/training/runs/stage3-baseline/report.json`。
 4. export.py、cpu.ts、decode.ts，CPU 与 PyTorch parity。
 5. kernel.wgsl、gpu.ts、test:browser。
 6. 站点 demo。

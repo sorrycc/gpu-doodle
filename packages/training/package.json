@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "data:fetch": "uv run --project . python torch/fetch.py",
+    "data:build": "uv run --project . python torch/dataset.py build",
     "train": "uv run --project . python torch/train.py",
+    "test": "uv run --project . python torch/test_model.py",
     "export": "uv run --project . python torch/export.py",
     "check": "echo 'training: no typescript' && exit 0"
   }

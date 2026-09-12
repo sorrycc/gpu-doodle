@@ -1,0 +1,516 @@
+{
+  "selectionCriterion": "Validation top-1 with fake quantization enabled. The test split is reported and never selects.",
+  "run": "stage3-baseline",
+  "parameters": 27742,
+  "config": {
+    "run": "stage3-baseline",
+    "data": "default",
+    "epochs": 5,
+    "batch": 512,
+    "samples": null,
+    "seed": 20260912,
+    "learning_rate": 0.003,
+    "warmup_steps": 500,
+    "label_smoothing": 0.05,
+    "quantization_bits": 6,
+    "qat_start": 3,
+    "storage": "f32",
+    "init": null,
+    "device": "mps",
+    "log_every": 50
+  },
+  "sourceHashes": {
+    "training/model.py": "99b6958fcffe47f5bb844044b295405524862d3b991785deb42ab8b8f2d18d57",
+    "training/train.py": "17ab099927501918b8080dbcbb44d5275e7d2a8d02cdb417e86858f3fa20ae5b",
+    "training/dataset.py": "2fe6955204cdca33251cc77f9854a2178e2b907261fa0c0cafb0e15b52e33fa7",
+    "data/classes.json": "0e911b29a4eab17885fc60c8a39bb612a2b7456d2fe1ab808584c65eef3dee27",
+    "src/preprocess.ts": "03245f64c1cee9abc17944f760ee0979f4ac6ff1e256eb0317efd5ad5f5ac659",
+    "src/labels.ts": "50caa310ef122d5d998e7b0652bde06eec4e6de186203bd42626d4b9d5e39a53"
+  },
+  "data": {
+    "name": "default",
+    "classes": [
+      "airplane",
+      "apple",
+      "banana",
+      "bicycle",
+      "bird",
+      "book",
+      "butterfly",
+      "car",
+      "cat",
+      "clock",
+      "cloud",
+      "cup",
+      "dog",
+      "elephant",
+      "eye",
+      "fish",
+      "flower",
+      "guitar",
+      "house",
+      "key",
+      "lightning",
+      "moon",
+      "mountain",
+      "pizza",
+      "rabbit",
+      "star",
+      "sun",
+      "t-shirt",
+      "tree",
+      "umbrella"
+    ],
+    "sources": {
+      "airplane": "a00468d718a36082650e49053a435506f17f79d9d37ae341013d76c01cb25bf4",
+      "apple": "258a2d58036f78225d3475cd59c0cd95b520c6506df0ddedfe9947492acc2434",
+      "banana": "55f06b49c7359495fac3c784100ad8b04537117c925b0baab24de5a497b6a9fa",
+      "bicycle": "ff0ebd9e134d1bc859c1642b97bff7f0593cb610a18d579ec758c5545157cb75",
+      "bird": "62d22389dd4b3622a3eb4e3c0c60424c04b0a270e601cb6e4b305a789c58e2fb",
+      "book": "71f60b36ea09e5c30fb0f76b32a27f813810308c252ba64680f3ac115c74c883",
+      "butterfly": "449089ece26380cd767be2905c098debd3ac4201b886192dcedd1705377c581a",
+      "car": "a3634064e806922546020eebecd9bfd171698bf683ad822a37219dd72f66e8e2",
+      "cat": "3202fddacf446b262d674834f496be15b238d5e158ce5b53cbd5d7c790230e31",
+      "clock": "f07d5b63892fe59243178996bad0881b58efa0df6c020eb14d19f8ff9891713a",
+      "cloud": "b534226f8315f4c2ae56f16132f8d898d2dddaf0fdc40136f0a68b56748a2581",
+      "cup": "c29aab326779f399355856a933cc50697aefdc91039b375c212e362700bbf641",
+      "dog": "f243bb9fbc68fb25aad8e57d1a8ba8038d10defe564f7ca475345930c6aefd63",
+      "elephant": "3530c6954b9d3be5bc9d210f414a61fa0f9a7f1543903f30e41c58a571a9111a",
+      "eye": "ba667388f6f373fdf7e12a421443d2e36b00b3c8eb22139129b66b72c051cb4c",
+      "fish": "ceaaed92f7cd434b8bf5f606192f4da7fcf249724906fa5b065ee66e8cc15092",
+      "flower": "5270b4bb61cd5476056166b638dae6f7efc949a0d39d54a20d7b48dc115e4db6",
+      "guitar": "b15a70a9afdfa68c7d83d5a3801fbaef84873b2a817da5c6e5d8f6d00d6b8b41",
+      "house": "30f87949082e17474decef2d1f218a4487ccb1144d8c80538f2ce512c71d8490",
+      "key": "33c1a798fb20acad7f4cac3ce810d97d4a69fa3b41b796436b290104d4505f46",
+      "lightning": "130b7f402c353fa99da9b5c37c186f62162e1ddebe236928973ad21a68519bc5",
+      "moon": "4f3e73ec91dc8adec20b69e3806783daabe490fbdafb4aeacc9d2f254f874ef8",
+      "mountain": "bd53adc2285ca300659b2aefc232b02d62931eea7c3496df759358f494c92741",
+      "pizza": "1008fa42c89fbd3f37e1cf3019de172e345f28a36834eaa179f2182852e76779",
+      "rabbit": "246aded1a033fb23281629e23b7de07345320a24255e5b05030147bf786c55a0",
+      "star": "884495cf733fd56e5af04c29cc25702ca2de2bd308098fbd644e7c0daf0637f1",
+      "sun": "c0392e9b22f565c2c488203db2b3f3554aebf2a1b79558d51521f31a75bd63c9",
+      "t-shirt": "175c49356cba26fb869cb2593e69ea2f51a16ed3a40697b19af1c14f34d52688",
+      "tree": "afa1692e87b6998e21983d8da923c075bbb0deabc3b14db85be352110985c4cb",
+      "umbrella": "c1ac292467acc46825834001cc27240c0e8c5de345ff21b65fe9613b18cefec9"
+    },
+    "sourceManifest": "33d250a3e5b1438b0322680e81fe119c0577a4b34d321da0ebc7556a2da95f4d",
+    "maxPoints": 128,
+    "buckets": [
+      64,
+      128
+    ],
+    "splitPercent": {
+      "train": 90,
+      "valid": 5,
+      "test": 5
+    },
+    "dropped": {
+      "unrecognized": 84811,
+      "too-long": 3520
+    },
+    "splits": {
+      "train": {
+        "sequences": 1120607,
+        "points": 44431286,
+        "perClass": {
+          "airplane": 37199,
+          "apple": 42714,
+          "banana": 46751,
+          "bicycle": 30261,
+          "bird": 29166,
+          "book": 35083,
+          "butterfly": 30973,
+          "car": 29674,
+          "cat": 24249,
+          "clock": 39660,
+          "cloud": 38758,
+          "cup": 41274,
+          "dog": 28070,
+          "elephant": 25533,
+          "eye": 32092,
+          "fish": 44845,
+          "flower": 29778,
+          "guitar": 30345,
+          "house": 49332,
+          "key": 36845,
+          "lightning": 51980,
+          "moon": 42007,
+          "mountain": 60973,
+          "pizza": 25768,
+          "rabbit": 23982,
+          "star": 53146,
+          "sun": 36048,
+          "t-shirt": 50310,
+          "tree": 29804,
+          "umbrella": 43987
+        },
+        "meanLength": 39.6493025654846
+      },
+      "valid": {
+        "sequences": 62248,
+        "points": 2477172,
+        "perClass": {
+          "airplane": 2023,
+          "apple": 2478,
+          "banana": 2540,
+          "bicycle": 1678,
+          "bird": 1644,
+          "book": 1949,
+          "butterfly": 1755,
+          "car": 1727,
+          "cat": 1274,
+          "clock": 2208,
+          "cloud": 2227,
+          "cup": 2263,
+          "dog": 1562,
+          "elephant": 1351,
+          "eye": 1732,
+          "fish": 2373,
+          "flower": 1727,
+          "guitar": 1710,
+          "house": 2765,
+          "key": 2044,
+          "lightning": 2902,
+          "moon": 2294,
+          "mountain": 3437,
+          "pizza": 1449,
+          "rabbit": 1379,
+          "star": 2852,
+          "sun": 1950,
+          "t-shirt": 2730,
+          "tree": 1678,
+          "umbrella": 2547
+        },
+        "meanLength": 39.79520627168744
+      },
+      "test": {
+        "sequences": 62040,
+        "points": 2461064,
+        "perClass": {
+          "airplane": 2009,
+          "apple": 2373,
+          "banana": 2494,
+          "bicycle": 1604,
+          "bird": 1548,
+          "book": 2026,
+          "butterfly": 1747,
+          "car": 1652,
+          "cat": 1354,
+          "clock": 2136,
+          "cloud": 2112,
+          "cup": 2309,
+          "dog": 1592,
+          "elephant": 1357,
+          "eye": 1717,
+          "fish": 2428,
+          "flower": 1691,
+          "guitar": 1772,
+          "house": 2801,
+          "key": 2062,
+          "lightning": 2990,
+          "moon": 2292,
+          "mountain": 3401,
+          "pizza": 1378,
+          "rabbit": 1362,
+          "star": 3028,
+          "sun": 1964,
+          "t-shirt": 2800,
+          "tree": 1614,
+          "umbrella": 2427
+        },
+        "meanLength": 39.66898774983881
+      }
+    },
+    "format": {
+      "rows": "int16[3] dx dy penLift",
+      "labels": "uint8",
+      "offsets": "uint32"
+    }
+  },
+  "elapsedSeconds": 486.79927970911376,
+  "pointsSeen": 222156430,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 1.18313729763031,
+      "seconds": 94.64871216705069,
+      "qat": false,
+      "sequences": 1120607,
+      "validationTop1": 0.8950809664567536,
+      "validationTop3": 0.9713565094460866,
+      "validationStrokesTop1": {
+        "1": 0.4287045366919419,
+        "2": 0.6406631538362678,
+        "3": 0.7654543117851176
+      },
+      "testTop1": 0.8938104448742746
+    },
+    {
+      "epoch": 2,
+      "loss": 0.6819981932640076,
+      "seconds": 96.46700545796193,
+      "qat": false,
+      "sequences": 1120607,
+      "validationTop1": 0.9208649273872253,
+      "validationTop3": 0.9805134301503663,
+      "validationStrokesTop1": {
+        "1": 0.451275542989333,
+        "2": 0.6762626911708006,
+        "3": 0.7989172342886518
+      },
+      "testTop1": 0.9203255963894261
+    },
+    {
+      "epoch": 3,
+      "loss": 0.6250624060630798,
+      "seconds": 96.09202858409844,
+      "qat": false,
+      "sequences": 1120607,
+      "validationTop1": 0.9280940753116566,
+      "validationTop3": 0.9832605063616502,
+      "validationStrokesTop1": {
+        "1": 0.444656856445187,
+        "2": 0.6638285567407788,
+        "3": 0.7970537206014651
+      },
+      "testTop1": 0.9263862024500322
+    },
+    {
+      "epoch": 4,
+      "loss": 0.6043490171432495,
+      "seconds": 99.22200991609134,
+      "qat": true,
+      "sequences": 1120607,
+      "validationTop1": 0.937283125562267,
+      "validationTop3": 0.9860557768924303,
+      "validationStrokesTop1": {
+        "1": 0.4512434134430022,
+        "2": 0.6803592083279784,
+        "3": 0.806740778820203
+      },
+      "testTop1": 0.9345422308188266
+    },
+    {
+      "epoch": 5,
+      "loss": 0.5903995633125305,
+      "seconds": 100.1933107089717,
+      "qat": true,
+      "sequences": 1120607,
+      "validationTop1": 0.9383755301375145,
+      "validationTop3": 0.986361007582573,
+      "validationStrokesTop1": {
+        "1": 0.4501349440945894,
+        "2": 0.6835079038683973,
+        "3": 0.8105320652872381
+      },
+      "testTop1": 0.9363152804642166
+    }
+  ],
+  "best": {
+    "validationTop1": 0.9383755301375145,
+    "metrics": {
+      "validation": {
+        "sequences": 62248,
+        "top1": 0.9383755301375145,
+        "top3": 0.986361007582573,
+        "perClass": {
+          "airplane": {
+            "support": 2023,
+            "top1": 0.9372219476025705
+          },
+          "apple": {
+            "support": 2478,
+            "top1": 0.9673123486682809
+          },
+          "banana": {
+            "support": 2540,
+            "top1": 0.889763779527559
+          },
+          "bicycle": {
+            "support": 1678,
+            "top1": 0.9803337306317044
+          },
+          "bird": {
+            "support": 1644,
+            "top1": 0.7937956204379562
+          },
+          "book": {
+            "support": 1949,
+            "top1": 0.9492047203694202
+          },
+          "butterfly": {
+            "support": 1755,
+            "top1": 0.9538461538461539
+          },
+          "car": {
+            "support": 1727,
+            "top1": 0.9704690214244355
+          },
+          "cat": {
+            "support": 1274,
+            "top1": 0.8634222919937206
+          },
+          "clock": {
+            "support": 2208,
+            "top1": 0.9746376811594203
+          },
+          "cloud": {
+            "support": 2227,
+            "top1": 0.9519533004041311
+          },
+          "cup": {
+            "support": 2263,
+            "top1": 0.9425541316836058
+          },
+          "dog": {
+            "support": 1562,
+            "top1": 0.7471190781049936
+          },
+          "elephant": {
+            "support": 1351,
+            "top1": 0.8556624722427831
+          },
+          "eye": {
+            "support": 1732,
+            "top1": 0.9584295612009238
+          },
+          "fish": {
+            "support": 2373,
+            "top1": 0.9502739148756848
+          },
+          "flower": {
+            "support": 1727,
+            "top1": 0.910828025477707
+          },
+          "guitar": {
+            "support": 1710,
+            "top1": 0.9309941520467836
+          },
+          "house": {
+            "support": 2765,
+            "top1": 0.9732368896925859
+          },
+          "key": {
+            "support": 2044,
+            "top1": 0.9158512720156555
+          },
+          "lightning": {
+            "support": 2902,
+            "top1": 0.9548587181254308
+          },
+          "moon": {
+            "support": 2294,
+            "top1": 0.9049694856146469
+          },
+          "mountain": {
+            "support": 3437,
+            "top1": 0.9871981379109689
+          },
+          "pizza": {
+            "support": 1449,
+            "top1": 0.9523809523809523
+          },
+          "rabbit": {
+            "support": 1379,
+            "top1": 0.8984771573604061
+          },
+          "star": {
+            "support": 2852,
+            "top1": 0.9698457223001402
+          },
+          "sun": {
+            "support": 1950,
+            "top1": 0.9646153846153847
+          },
+          "t-shirt": {
+            "support": 2730,
+            "top1": 0.9798534798534798
+          },
+          "tree": {
+            "support": 1678,
+            "top1": 0.9457687723480334
+          },
+          "umbrella": {
+            "support": 2547,
+            "top1": 0.9697683549273656
+          }
+        },
+        "confusions": [
+          {
+            "truth": "banana",
+            "predicted": "moon",
+            "count": 196
+          },
+          {
+            "truth": "dog",
+            "predicted": "elephant",
+            "count": 162
+          },
+          {
+            "truth": "elephant",
+            "predicted": "dog",
+            "count": 115
+          },
+          {
+            "truth": "flower",
+            "predicted": "tree",
+            "count": 94
+          },
+          {
+            "truth": "cat",
+            "predicted": "dog",
+            "count": 87
+          },
+          {
+            "truth": "moon",
+            "predicted": "banana",
+            "count": 67
+          },
+          {
+            "truth": "rabbit",
+            "predicted": "cat",
+            "count": 64
+          },
+          {
+            "truth": "bird",
+            "predicted": "dog",
+            "count": 63
+          },
+          {
+            "truth": "guitar",
+            "predicted": "key",
+            "count": 54
+          },
+          {
+            "truth": "cat",
+            "predicted": "rabbit",
+            "count": 52
+          }
+        ]
+      },
+      "validationStrokes": {
+        "1": {
+          "sequences": 62248,
+          "top1": 0.4501349440945894,
+          "top3": 0.6201484385040483
+        },
+        "2": {
+          "sequences": 62248,
+          "top1": 0.6835079038683973,
+          "top3": 0.825118879321424
+        },
+        "3": {
+          "sequences": 62248,
+          "top1": 0.8105320652872381,
+          "top3": 0.9120774964657499
+        }
+      },
+      "test": {
+        "sequences": 62040,
+        "top1": 0.9363152804642166,
+        "top3": 0.9870245003223727
+      }
+    }
+  },
+  "status": "completed"
+}

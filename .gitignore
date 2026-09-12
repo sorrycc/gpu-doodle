@@ -8,7 +8,7 @@ coverage
 test-results/
 
 packages/training/.venv/
-packages/training/data/npz/
+packages/training/data/simplified/
 packages/training/data/raw/
 packages/training/data/synth/
 packages/training/runs/*
@@ -21,3 +21,4 @@ __pycache__
 *.pyc
 .pytest_cache/
 .ruff_cache/
+!packages/training/runs/stage3-baseline/
