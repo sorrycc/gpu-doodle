@@ -30,6 +30,11 @@ export class Sketchpad {
     canvas.addEventListener("pointercancel", this.up);
     canvas.addEventListener("lostpointercapture", this.up);
     new ResizeObserver(() => this.resize()).observe(canvas);
+    // The ink colour follows the colour scheme; repaint existing strokes when
+    // the OS theme flips mid-session, otherwise they keep the old colour.
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => this.redraw());
     this.resize();
   }
 
@@ -115,8 +120,12 @@ export class Sketchpad {
   };
 
   private applyStyle(): void {
-    const ink = getComputedStyle(this.canvas).getPropertyValue("--ink").trim();
-    this.context.strokeStyle = ink || "#111";
+    // `--ink` is inherited from `:root`, so it tracks the colour scheme. If it
+    // is ever missing, fall back to the canvas's computed text colour rather
+    // than a fixed dark value that vanishes on a dark canvas.
+    const style = getComputedStyle(this.canvas);
+    const ink = style.getPropertyValue("--ink").trim();
+    this.context.strokeStyle = ink || style.color || "#111";
     this.context.fillStyle = this.context.strokeStyle;
     this.context.lineWidth = this.lineWidth;
     this.context.lineCap = "round";

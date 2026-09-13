@@ -92,7 +92,6 @@ a {
   border: 1px solid var(--line);
   border-radius: 16px;
   cursor: crosshair;
-  --ink: var(--ink);
 }
 
 .tools,
