@@ -6,7 +6,7 @@
 
 - `packages/core` — the publishable `gpu-doodle` package. `preprocess.ts` (shared by browser and training), `labels.ts`, WGSL kernel, CPU reference, build, and unit tests. **Zero runtime dependencies; keep it that way.**
 - `packages/training` — `torch/` for Python (uv project, Python 3.13), `data/` for the class list, the download manifest, `simplified/` (ignored ndjson prefixes) and `synth/` (ignored featurized splits), `active/` for the promoted export report and parity fixtures, `runs/` for training history (only `report.json` and `source/` snapshots are tracked, never `.pt`).
-- `apps/site` — the Vite demo: a canvas, guess-while-drawing, top-5 probabilities, a twenty-second prompt mode. Plain TypeScript, no framework. Chinese UI with English category names beside the Chinese ones.
+- `apps/site` — the Vite demo: a canvas, guess-while-drawing, top-5 probabilities, a twenty-second prompt mode. Plain TypeScript, no framework. The UI ships in Chinese and English (`src/i18n.ts`): it follows the system language by default, with a persisted switch and `?lang=`. Chinese shows English category names beside the Chinese ones; English shows the label alone. Category translations stay in `packages/core` (`labelZh`); a third language would put its table in the site, never in core. A light/dark/system theme switch overrides `prefers-color-scheme` through `data-theme` on `<html>`. `tests/smoke.mjs` runs under Playwright's default en-US locale, so text assertions go through `data-*` hooks.
 
 ## Validation
 

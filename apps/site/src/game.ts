@@ -1,18 +1,26 @@
-import { LABELS, labelZh, type Guess, type Label } from "gpu-doodle";
+import { LABELS, type Guess, type Label } from "gpu-doodle";
 
 export const ROUND_SECONDS = 20;
 const NEXT_DELAY_MS = 1400;
 
 export type Phase = "idle" | "drawing" | "solved" | "timeout";
 
+/**
+ * How the current round ended. The game never formats text; the page turns
+ * this into a message in the active language.
+ */
+export type Outcome =
+  | { kind: "none" }
+  | { kind: "solved"; strokes: number; seconds: number }
+  | { kind: "timeout" };
+
 export interface GameState {
   phase: Phase;
   target: Label | undefined;
-  targetZh: string;
   remaining: number;
   solved: number;
   rounds: number;
-  message: string;
+  outcome: Outcome;
 }
 
 export interface GameEvents {
@@ -32,7 +40,7 @@ export class Game {
   private deadline = 0;
   private solved = 0;
   private rounds = 0;
-  private message = "";
+  private outcome: Outcome = { kind: "none" };
   private ticker: ReturnType<typeof setInterval> | undefined;
   private advance: ReturnType<typeof setTimeout> | undefined;
 
@@ -60,7 +68,7 @@ export class Game {
     this.clearTimers();
     this.phase = "idle";
     this.target = undefined;
-    this.message = "";
+    this.outcome = { kind: "none" };
     this.emit();
   }
 
@@ -73,7 +81,7 @@ export class Game {
     this.phase = "solved";
     this.solved++;
     const seconds = ROUND_SECONDS - this.remaining();
-    this.message = `猜中了！第 ${strokes} 笔，用时 ${seconds.toFixed(1)} 秒`;
+    this.outcome = { kind: "solved", strokes, seconds };
     this.emit();
     this.advance = setTimeout(() => this.next(), NEXT_DELAY_MS);
   }
@@ -88,7 +96,7 @@ export class Game {
     this.target = candidate;
     this.rounds++;
     this.phase = "drawing";
-    this.message = "";
+    this.outcome = { kind: "none" };
     this.deadline = performance.now() + ROUND_SECONDS * 1000;
     this.events.onReset();
     this.emit();
@@ -100,7 +108,7 @@ export class Game {
     if (this.remaining() <= 0) {
       this.clearTimers();
       this.phase = "timeout";
-      this.message = `时间到，答案是 ${labelZh[this.target!]} ${this.target}`;
+      this.outcome = { kind: "timeout" };
     }
     this.emit();
   }
@@ -120,11 +128,10 @@ export class Game {
     this.events.onState({
       phase: this.phase,
       target: this.target,
-      targetZh: this.target ? labelZh[this.target] : "",
       remaining: this.phase === "drawing" ? this.remaining() : 0,
       solved: this.solved,
       rounds: this.rounds,
-      message: this.message,
+      outcome: this.outcome,
     });
   }
 }

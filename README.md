@@ -60,7 +60,7 @@ The page draws on a canvas, guesses while you draw, and has a prompt mode in the
 
 - `packages/core`: publishable browser package, WGSL kernel, CPU reference, shared preprocessing, build
 - `packages/training`: data fetch and build, PyTorch training, evaluation, gated export, provenance
-- `apps/site`: the demo
+- `apps/site`: the demo, in Chinese or English following the system language, with a switch
 
 ## License
 

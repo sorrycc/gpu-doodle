@@ -3,13 +3,23 @@ import {
   classify,
   defineClassifier,
   LABELS,
-  labelZh,
   type Classifier,
   type Guess,
+  type Label,
   type Stroke,
 } from "gpu-doodle";
 import { Sketchpad } from "./sketchpad.ts";
 import { Game, ROUND_SECONDS, type GameState } from "./game.ts";
+import {
+  detectLocale,
+  isLocale,
+  LANGUAGE_TAGS,
+  persistLocale,
+  Translator,
+  type Key,
+  type Locale,
+} from "./i18n.ts";
+import { applyTheme, isTheme, readTheme } from "./theme.ts";
 
 const TOP_K = 5;
 
@@ -29,23 +39,63 @@ const ui = {
   timeline: element<HTMLParagraphElement>("timeline"),
   backend: element<HTMLSpanElement>("backend"),
   timing: element<HTMLSpanElement>("timing"),
+  labelSummary: element<HTMLElement>("label-summary"),
   labels: element<HTMLUListElement>("labels"),
-  game: element<HTMLDivElement>("game"),
+  game: element<HTMLElement>("game"),
   play: element<HTMLButtonElement>("play"),
   skip: element<HTMLButtonElement>("skip"),
   stop: element<HTMLButtonElement>("stop"),
-  targetZh: element<HTMLElement>("target-zh"),
-  targetEn: element<HTMLSpanElement>("target-en"),
+  targetName: element<HTMLElement>("target-name"),
+  targetAlt: element<HTMLSpanElement>("target-alt"),
   countdown: element<HTMLSpanElement>("countdown"),
   score: element<HTMLSpanElement>("score"),
   gameStatus: element<HTMLParagraphElement>("game-status"),
+  language: element<HTMLSelectElement>("language"),
+  theme: element<HTMLSelectElement>("theme"),
 };
 
-document.getElementById("label-count")!.textContent = String(LABELS.length);
-for (const label of LABELS) {
-  const item = document.createElement("li");
-  item.textContent = `${labelZh[label]} ${label}`;
-  ui.labels.append(item);
+const i18n = new Translator(detectLocale());
+
+// Everything the page shows is re-rendered from these on a language switch.
+let lastGuesses: Guess[] = [];
+let lastStrokes = 0;
+let lastElapsed = 0;
+let lastGame: GameState | undefined;
+let backendNote: Key = "backend.init";
+const timeline: Label[] = [];
+
+/** Static strings: `data-i18n` text, `data-i18n-aria` labels, head, label list. */
+function renderStatic(): void {
+  const { locale } = i18n;
+  document.documentElement.lang = LANGUAGE_TAGS[locale];
+  document.title = i18n.t("title");
+  document
+    .querySelector('meta[name="description"]')
+    ?.setAttribute("content", i18n.t("description"));
+  for (const node of document.querySelectorAll<HTMLElement>("[data-i18n]"))
+    node.textContent = i18n.t(node.dataset.i18n as Key);
+  for (const node of document.querySelectorAll<HTMLElement>("[data-i18n-aria]"))
+    node.setAttribute("aria-label", i18n.t(node.dataset.i18nAria as Key));
+  ui.language.setAttribute("aria-label", i18n.t("controls.language"));
+  ui.theme.setAttribute("aria-label", i18n.t("controls.theme"));
+  ui.language.value = locale;
+  ui.labelSummary.textContent = i18n.t("labels.summary", {
+    count: LABELS.length,
+  });
+  ui.labels.replaceChildren(
+    ...LABELS.map((label) => {
+      const item = document.createElement("li");
+      item.textContent = i18n.labelText(label);
+      return item;
+    }),
+  );
+}
+
+function setLocale(locale: Locale): void {
+  i18n.use(locale);
+  renderStatic();
+  render(lastGuesses, lastStrokes, lastElapsed);
+  if (lastGame) renderGame(lastGame);
 }
 
 // One sketch at a time is fastest on the CPU; the demo still runs WebGPU when
@@ -53,23 +103,22 @@ for (const label of LABELS) {
 // device or a lost one drops to the CPU path and says so.
 let classifier: Classifier | undefined;
 let backend: "cpu" | "webgpu" = "cpu";
-let backendNote = "";
 
 async function initialize(): Promise<void> {
   if (!navigator.gpu) {
-    backendNote = "浏览器没有 WebGPU，用 CPU";
+    backendNote = "backend.missing";
     return;
   }
   try {
     classifier = await defineClassifier({ backend: "webgpu" });
     backend = "webgpu";
-    backendNote = "WebGPU";
+    backendNote = "backend.webgpu";
   } catch {
-    backendNote = "WebGPU 初始化失败，用 CPU";
+    backendNote = "backend.failed";
   }
 }
 
-function fallbackToCPU(reason: string): void {
+function fallbackToCPU(reason: Key): void {
   classifier?.dispose();
   classifier = undefined;
   backend = "cpu";
@@ -84,13 +133,12 @@ async function score(strokes: readonly Stroke[]): Promise<Guess[]> {
       });
       return guesses;
     } catch {
-      fallbackToCPU("WebGPU 设备丢失，已切到 CPU");
+      fallbackToCPU("backend.lost");
     }
   }
   return classify(strokes, { topK: TOP_K });
 }
 
-const timeline: string[] = [];
 let ticket = 0;
 let scheduled = false;
 let latest: { strokes: readonly Stroke[]; live: boolean } | undefined;
@@ -117,7 +165,7 @@ async function run(strokes: readonly Stroke[], live: boolean): Promise<void> {
   if (!live) {
     timeline.length = strokes.length;
     if (strokes.length > 0 && guesses[0])
-      timeline[strokes.length - 1] = labelZh[guesses[0].label];
+      timeline[strokes.length - 1] = guesses[0].label;
   }
   if (id !== ticket) return;
   render(guesses, strokes.length, elapsed);
@@ -125,23 +173,27 @@ async function run(strokes: readonly Stroke[], live: boolean): Promise<void> {
 }
 
 function render(guesses: Guess[], strokes: number, elapsed: number): void {
-  ui.strokes.textContent = `${strokes} 笔`;
+  lastGuesses = guesses;
+  lastStrokes = strokes;
+  lastElapsed = elapsed;
+  ui.strokes.textContent = i18n.strokes(strokes);
+  ui.strokes.dataset.strokes = String(strokes);
   ui.undo.disabled = strokes === 0;
   ui.clear.disabled = strokes === 0;
   const top = guesses[0];
   if (strokes === 0 || !top) {
-    ui.headline.textContent = "在画板上画点什么";
+    ui.headline.textContent = i18n.t("headline.empty");
     ui.guesses.replaceChildren();
     ui.timeline.textContent = "";
     ui.timing.textContent = "";
   } else {
-    const name = `${labelZh[top.label]}`;
+    const name = i18n.labelName(top.label);
     ui.headline.textContent =
       top.probability >= 0.6
-        ? `我猜是 ${name}`
+        ? i18n.t("headline.sure", { name })
         : top.probability >= 0.3
-          ? `可能是 ${name}？`
-          : "还看不出来…";
+          ? i18n.t("headline.maybe", { name })
+          : i18n.t("headline.unsure");
     ui.guesses.replaceChildren(
       ...guesses.map((guess) => {
         const item = document.createElement("li");
@@ -150,7 +202,7 @@ function render(guesses: Guess[], strokes: number, elapsed: number): void {
         bar.style.width = `${Math.max(1, guess.probability * 100).toFixed(1)}%`;
         const text = document.createElement("span");
         text.className = "label";
-        text.textContent = `${labelZh[guess.label]} ${guess.label}`;
+        text.textContent = i18n.labelText(guess.label);
         const percent = document.createElement("span");
         percent.className = "percent";
         percent.textContent = `${(guess.probability * 100).toFixed(0)}%`;
@@ -159,11 +211,11 @@ function render(guesses: Guess[], strokes: number, elapsed: number): void {
       }),
     );
     ui.timeline.textContent = timeline
-      .map((label, index) => `${index + 1} ${label}`)
+      .map((label, index) => `${index + 1} ${i18n.labelName(label)}`)
       .join(" · ");
     ui.timing.textContent = `${elapsed.toFixed(1)} ms`;
   }
-  ui.backend.textContent = backendNote;
+  ui.backend.textContent = i18n.t(backendNote);
 }
 
 const game = new Game({
@@ -172,21 +224,33 @@ const game = new Game({
 });
 
 function renderGame(state: GameState): void {
+  lastGame = state;
   const idle = ui.game.querySelector<HTMLElement>(".game-idle")!;
   const live = ui.game.querySelector<HTMLElement>(".game-live")!;
   idle.hidden = state.phase !== "idle";
   live.hidden = state.phase === "idle";
   ui.game.dataset.phase = state.phase;
-  if (state.phase === "idle") return;
-  ui.targetZh.textContent = state.targetZh;
-  ui.targetEn.textContent = state.target ?? "";
-  ui.countdown.textContent =
-    state.phase === "drawing"
-      ? `${state.remaining.toFixed(1)} s`
-      : `${ROUND_SECONDS} s`;
-  ui.score.textContent = `猜中 ${state.solved} / ${state.rounds}`;
-  ui.gameStatus.textContent = state.message;
-  ui.skip.textContent = state.phase === "drawing" ? "跳过" : "下一题";
+  if (state.phase === "idle" || !state.target) return;
+  ui.targetName.textContent = i18n.labelName(state.target);
+  ui.targetAlt.textContent = i18n.labelAlt(state.target);
+  ui.countdown.textContent = i18n.t("countdown", {
+    s: state.phase === "drawing" ? state.remaining.toFixed(1) : ROUND_SECONDS,
+  });
+  ui.score.textContent = i18n.t("score", {
+    solved: state.solved,
+    rounds: state.rounds,
+  });
+  const { outcome } = state;
+  ui.gameStatus.textContent =
+    outcome.kind === "solved"
+      ? i18n.t("game.solved", {
+          strokes: outcome.strokes,
+          seconds: outcome.seconds.toFixed(1),
+        })
+      : outcome.kind === "timeout"
+        ? i18n.t("game.timeout", { name: i18n.labelText(state.target) })
+        : "";
+  ui.skip.textContent = i18n.t(state.phase === "drawing" ? "skip" : "next");
 }
 
 const pad = new Sketchpad(ui.pad, {
@@ -198,6 +262,22 @@ ui.clear.addEventListener("click", () => pad.clear());
 ui.play.addEventListener("click", () => game.start());
 ui.skip.addEventListener("click", () => game.skip());
 ui.stop.addEventListener("click", () => game.stop());
+ui.language.addEventListener("change", () => {
+  const { value } = ui.language;
+  if (!isLocale(value)) return;
+  persistLocale(value);
+  setLocale(value);
+  // A `?lang=` in the URL would beat the choice on the next load; drop it.
+  if (new URLSearchParams(location.search).has("lang"))
+    history.replaceState(null, "", location.pathname + location.hash);
+});
+ui.theme.addEventListener("change", () => {
+  const { value } = ui.theme;
+  if (!isTheme(value)) return;
+  applyTheme(value);
+  // `--ink` changed without a `prefers-color-scheme` event; repaint by hand.
+  pad.repaint();
+});
 window.addEventListener("keydown", (event) => {
   if (event.metaKey || event.ctrlKey) {
     if (event.key === "z") {
@@ -209,8 +289,14 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") pad.clear();
 });
 
+ui.theme.value = readTheme();
+renderStatic();
 render([], 0, 0);
+// The head script hid the body while the static markup was in the wrong
+// language; every string is in place now.
+document.documentElement.classList.remove("i18n-pending");
 void initialize().then(() => {
-  ui.backend.textContent = backendNote;
+  ui.backend.textContent = i18n.t(backendNote);
+  ui.backend.dataset.backend = backend;
   if (pad.strokes.length) schedule(pad.strokes, false);
 });

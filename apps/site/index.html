@@ -9,51 +9,134 @@
       content="一个几万参数的小模型在你的浏览器里边画边猜。WebGPU 推理，不上传任何数据。"
     />
     <link rel="icon" href="/favicon.svg" />
+    <script>
+      // Runs before first paint so `<html lang>`, the title and the theme are
+      // already right when the page appears. It mirrors `detectLocale` and
+      // `readTheme` in `src/`; keep the storage keys and order in sync. The
+      // static markup is Chinese; when another language is chosen the body
+      // stays hidden until `main.ts` has swapped the strings, with a timeout
+      // in case the module never runs.
+      (function () {
+        var head = {
+          zh: {
+            tag: "zh-CN",
+            title: "gpu-doodle · 你画我猜",
+            description:
+              "一个几万参数的小模型在你的浏览器里边画边猜。WebGPU 推理，不上传任何数据。",
+          },
+          en: {
+            tag: "en",
+            title: "gpu-doodle · Guess the doodle",
+            description:
+              "A tiny model with a few tens of thousands of parameters guesses your doodle while you draw. WebGPU inference, nothing uploaded.",
+          },
+        };
+        var locale = new URLSearchParams(location.search).get("lang");
+        if (!head[locale]) {
+          try {
+            locale = localStorage.getItem("gpu-doodle:lang");
+          } catch (error) {}
+        }
+        if (!head[locale]) {
+          locale = "en";
+          var tags = navigator.languages || [navigator.language];
+          for (var index = 0; index < tags.length; index++) {
+            if (/^zh\b/i.test(tags[index])) {
+              locale = "zh";
+              break;
+            }
+            if (/^en\b/i.test(tags[index])) break;
+          }
+        }
+        var root = document.documentElement;
+        root.lang = head[locale].tag;
+        document.title = head[locale].title;
+        var description = document.querySelector('meta[name="description"]');
+        if (description)
+          description.setAttribute("content", head[locale].description);
+        if (locale !== "zh") {
+          root.classList.add("i18n-pending");
+          setTimeout(function () {
+            root.classList.remove("i18n-pending");
+          }, 2000);
+        }
+        var theme;
+        try {
+          theme = localStorage.getItem("gpu-doodle:theme");
+        } catch (error) {}
+        if (theme === "light" || theme === "dark") root.dataset.theme = theme;
+      })();
+    </script>
   </head>
   <body>
     <header class="hero">
-      <h1>gpu-doodle</h1>
-      <p>
-        画点什么，一个两万多参数的小模型在你的浏览器里边画边猜。 推理跑在 WebGPU
-        上，笔画不离开这台设备。
-      </p>
+      <div class="hero-text">
+        <h1>gpu-doodle</h1>
+        <p data-i18n="hero.body">
+          画点什么，一个两万多参数的小模型在你的浏览器里边画边猜。推理跑在
+          WebGPU 上，笔画不离开这台设备。
+        </p>
+      </div>
+      <div class="controls">
+        <label>
+          <span class="control-label" data-i18n="controls.language">语言</span>
+          <select id="language">
+            <option value="zh" lang="zh-CN">中文</option>
+            <option value="en" lang="en">English</option>
+          </select>
+        </label>
+        <label>
+          <span class="control-label" data-i18n="controls.theme">主题</span>
+          <select id="theme">
+            <option value="system" data-i18n="theme.system">跟随系统</option>
+            <option value="light" data-i18n="theme.light">浅色</option>
+            <option value="dark" data-i18n="theme.dark">深色</option>
+          </select>
+        </label>
+      </div>
     </header>
 
     <main class="layout">
       <section class="pad">
-        <canvas id="pad" aria-label="画板"></canvas>
+        <canvas id="pad" aria-label="画板" data-i18n-aria="pad.label"></canvas>
         <div class="tools">
-          <button id="undo" type="button">撤销一笔</button>
-          <button id="clear" type="button">清空</button>
-          <span id="strokes" class="count">0 笔</span>
+          <button id="undo" type="button" data-i18n="undo">撤销一笔</button>
+          <button id="clear" type="button" data-i18n="clear">清空</button>
+          <span id="strokes" class="count" data-strokes="0">0 笔</span>
+        </div>
+        <p class="hints" data-i18n="hints">
+          快捷键：⌘/Ctrl+Z 撤销一笔，Esc 清空
+        </p>
+      </section>
+
+      <section id="game" class="game panel">
+        <div class="game-idle">
+          <button id="play" type="button" class="primary" data-i18n="play">
+            来一题，20 秒内画出它
+          </button>
+        </div>
+        <div class="game-live" hidden>
+          <p class="prompt">
+            <span data-i18n="prompt.draw">请画</span>
+            <strong id="target-name"></strong>
+            <span id="target-alt" class="alt"></span>
+          </p>
+          <p class="game-meta">
+            <span id="countdown">20.0 s</span>
+            <span id="score">猜中 0 / 0</span>
+          </p>
+          <p id="game-status" class="status" aria-live="polite"></p>
+          <div class="game-tools">
+            <button id="skip" type="button" data-i18n="skip">跳过</button>
+            <button id="stop" type="button" data-i18n="stop">结束</button>
+          </div>
         </div>
       </section>
 
-      <section class="panel">
-        <div id="game" class="game">
-          <div class="game-idle">
-            <button id="play" type="button" class="primary">
-              来一题，20 秒内画出它
-            </button>
-          </div>
-          <div class="game-live" hidden>
-            <p class="prompt">
-              请画 <strong id="target-zh"></strong>
-              <span id="target-en" class="en"></span>
-            </p>
-            <p class="game-meta">
-              <span id="countdown">20.0 s</span>
-              <span id="score">猜中 0 / 0</span>
-            </p>
-            <p id="game-status" class="status"></p>
-            <div class="game-tools">
-              <button id="skip" type="button">跳过</button>
-              <button id="stop" type="button">结束</button>
-            </div>
-          </div>
-        </div>
-
-        <p id="headline" class="headline">在画板上画点什么</p>
+      <section class="results panel">
+        <p id="headline" class="headline" aria-live="polite">
+          在画板上画点什么
+        </p>
         <ol id="guesses" class="guesses"></ol>
         <p id="timeline" class="timeline"></p>
         <p class="meta">
@@ -64,21 +147,29 @@
     </main>
 
     <details class="labels">
-      <summary>它认识的 <span id="label-count">100</span> 样东西</summary>
+      <summary id="label-summary">它认识的 100 样东西</summary>
       <ul id="labels"></ul>
     </details>
 
     <footer>
       <p>
-        训练数据来自 Google 的
-        <a href="https://github.com/googlecreativelab/quickdraw-dataset"
+        <span data-i18n="footer.dataBefore">训练数据来自 Google 的</span>
+        <a
+          href="https://github.com/googlecreativelab/quickdraw-dataset"
+          data-i18n="footer.dataLink"
           >Quick, Draw! 数据集</a
-        >（CC BY 4.0）。模型只见过这 100 类，画别的它也会硬猜一个。
+        ><span data-i18n="footer.dataAfter"
+          >（CC BY 4.0）。模型只见过这 100 类，画别的它也会硬猜一个。</span
+        >
       </p>
       <p>
-        代码与模型：gpu-doodle，MIT。配方来自
-        <a href="https://github.com/arikchakma/gpu-time">gpu-time</a> 与
-        <a href="https://github.com/vercel-labs/gpu-lexer">gpu-lexer</a>。
+        <span data-i18n="footer.codeBefore"
+          >代码与模型：gpu-doodle，MIT。配方来自</span
+        >
+        <a href="https://github.com/arikchakma/gpu-time">gpu-time</a>
+        <span data-i18n="footer.codeJoin">与</span>
+        <a href="https://github.com/vercel-labs/gpu-lexer">gpu-lexer</a
+        ><span data-i18n="footer.codeAfter">。</span>
       </p>
     </footer>
 

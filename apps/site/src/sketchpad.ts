@@ -132,6 +132,11 @@ export class Sketchpad {
     this.context.lineJoin = "round";
   }
 
+  /** Repaint every stroke in the current `--ink`, for a theme change. */
+  repaint(): void {
+    this.redraw();
+  }
+
   private redraw(): void {
     const ratio = window.devicePixelRatio || 1;
     this.context.save();

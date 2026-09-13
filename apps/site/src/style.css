@@ -20,8 +20,21 @@
     sans-serif;
 }
 
+/* English needs no CJK faces; keep the stack short so Latin text picks the
+   system UI font first. */
+:root:lang(en) {
+  font-family:
+    ui-sans-serif,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+}
+
+/* Dark tokens follow the system unless `data-theme` on <html> overrides
+   them; `light` cancels the media query, `dark` forces it. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --bg: #131316;
     --paper: #1d1d22;
     --ink: #f2f2f0;
@@ -29,6 +42,26 @@
     --line: #2d2d34;
     --bar: #5c4a00;
   }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #131316;
+  --paper: #1d1d22;
+  --ink: #f2f2f0;
+  --muted: #9a9aa3;
+  --line: #2d2d34;
+  --bar: #5c4a00;
+}
+
+/* The head script hides the body while the static Chinese markup is being
+   swapped for another language. */
+html.i18n-pending body {
+  visibility: hidden;
 }
 
 * {
@@ -50,6 +83,39 @@ a {
 .hero {
   max-width: 960px;
   margin: 40px auto 24px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  min-width: 0;
+  flex: 1 1 320px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.controls select {
+  font: inherit;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .hero h1 {
@@ -64,23 +130,58 @@ a {
   max-width: 40em;
 }
 
+/* The pad takes the left column; the prompt card and the results card stack
+   on the right. On narrow screens the prompt moves above the pad so the
+   target stays in view while drawing. */
 .layout {
   max-width: 960px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "pad game"
+    "pad results";
+  /* The prompt row fits its content; the rest of the pad's height goes to the
+     results row so the two cards sit together under the header. */
+  grid-template-rows: auto minmax(0, 1fr);
   gap: 24px;
   align-items: start;
+}
+
+.pad {
+  grid-area: pad;
+  min-width: 0;
+}
+
+.game {
+  grid-area: game;
+}
+
+.results {
+  grid-area: results;
 }
 
 @media (max-width: 720px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-template-areas:
+      "game"
+      "pad"
+      "results";
   }
 }
 
-.pad {
-  min-width: 0;
+.hints {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+@media (hover: none) {
+  .hints {
+    display: none;
+  }
 }
 
 #pad {
@@ -139,12 +240,6 @@ button.primary {
   padding: 20px;
 }
 
-.game {
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px dashed var(--line);
-}
-
 .prompt {
   margin: 0;
   font-size: 1.25rem;
@@ -155,7 +250,7 @@ button.primary {
   margin: 0 6px;
 }
 
-.prompt .en {
+.prompt .alt {
   color: var(--muted);
 }
 
