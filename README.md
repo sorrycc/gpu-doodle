@@ -47,6 +47,8 @@ The shipped entry is 26,185 Brotli bytes (51,638 minified); the model ranks 100 
 
 ## Demo
 
+Live at https://sorrycc.github.io/gpu-doodle/. `.github/workflows/pages.yml` rebuilds it on every push to `main`, with the Vite base set to `/gpu-doodle/`.
+
 ```sh
 pnpm site:dev      # builds packages/core, then the Vite dev server for apps/site
 pnpm site:smoke    # headless Chrome: draw a circle, expect a ranked guess list
