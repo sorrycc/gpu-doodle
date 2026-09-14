@@ -16,9 +16,9 @@ export const LANGUAGE_TAGS: Record<Locale, string> = {
 const zh = {
   title: "gpu-doodle · 你画我猜",
   description:
-    "一个几万参数的小模型在你的浏览器里边画边猜。WebGPU 推理，不上传任何数据。",
+    "一个三万多参数的小模型在你的浏览器里边画边猜。WebGPU 推理，不上传任何数据。",
   "hero.body":
-    "画点什么，一个两万多参数的小模型在你的浏览器里边画边猜。推理跑在 WebGPU 上，笔画不离开这台设备。",
+    "画点什么，一个三万多参数的小模型在你的浏览器里边画边猜。推理跑在 WebGPU 上，笔画不离开这台设备。",
   "controls.language": "语言",
   "controls.theme": "主题",
   "theme.system": "跟随系统",
@@ -61,9 +61,9 @@ const zh = {
 const en: Record<Key, string> = {
   title: "gpu-doodle · Guess the doodle",
   description:
-    "A tiny model with a few tens of thousands of parameters guesses your doodle while you draw. WebGPU inference, nothing uploaded.",
+    "A tiny model with just over thirty thousand parameters guesses your doodle while you draw. WebGPU inference, nothing uploaded.",
   "hero.body":
-    "Draw something and a model with a little over twenty thousand parameters guesses along as you go, right in your browser. Inference runs on WebGPU; your strokes never leave this device.",
+    "Draw something and a model with just over thirty thousand parameters guesses along as you go, right in your browser. Inference runs on WebGPU; your strokes never leave this device.",
   "controls.language": "Language",
   "controls.theme": "Theme",
   "theme.system": "System",

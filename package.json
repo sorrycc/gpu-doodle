@@ -19,6 +19,7 @@
     "site:dev": "pnpm build:core && pnpm --filter @gpu-doodle/site dev",
     "site:build": "pnpm build:core && pnpm --filter @gpu-doodle/site build",
     "site:smoke": "pnpm build:core && pnpm --filter @gpu-doodle/site test:smoke",
+    "site:og": "pnpm build:core && pnpm --filter @gpu-doodle/site og",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check:package": "pnpm --filter gpu-doodle check:package"

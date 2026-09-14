@@ -6,7 +6,7 @@
 
 - `packages/core` — the publishable `gpu-doodle` package. `preprocess.ts` (shared by browser and training), `labels.ts`, WGSL kernel, CPU reference, build, and unit tests. **Zero runtime dependencies; keep it that way.**
 - `packages/training` — `torch/` for Python (uv project, Python 3.13), `data/` for the class list, the download manifest, `simplified/` (ignored ndjson prefixes) and `synth/` (ignored featurized splits), `active/` for the promoted export report and parity fixtures, `runs/` for training history (only `report.json` and `source/` snapshots are tracked, never `.pt`).
-- `apps/site` — the Vite demo: a canvas, guess-while-drawing, top-5 probabilities, a twenty-second prompt mode. Plain TypeScript, no framework. The UI ships in Chinese and English (`src/i18n.ts`): it follows the system language by default, with a persisted switch and `?lang=`. Chinese shows English category names beside the Chinese ones; English shows the label alone. Category translations stay in `packages/core` (`labelZh`); a third language would put its table in the site, never in core. A light/dark/system theme switch overrides `prefers-color-scheme` through `data-theme` on `<html>`. `tests/smoke.mjs` runs under Playwright's default en-US locale, so text assertions go through `data-*` hooks.
+- `apps/site` — the Vite demo: a canvas, guess-while-drawing, top-5 probabilities, a twenty-second prompt mode. Plain TypeScript, no framework. The UI ships in Chinese and English (`src/i18n.ts`): it follows the system language by default, with a persisted switch and `?lang=`. Chinese shows English category names beside the Chinese ones; English shows the label alone. Category translations stay in `packages/core` (`labelZh`); a third language would put its table in the site, never in core. A light/dark/system theme switch overrides `prefers-color-scheme` through `data-theme` on `<html>`. `tests/smoke.mjs` runs under Playwright's default en-US locale, so text assertions go through `data-*` hooks. `index.html` carries static `og:*` and `twitter:card` tags in Chinese (crawlers do not run the language script); `og:url` and `og:image` are absolute `https://sorrycc.github.io/gpu-doodle/` URLs because Vite's `--base` never rewrites meta `content`. `scripts/og.mjs` renders `public/og.png`; the smoke test asserts the tag names a 1200×630 PNG that exists.
 
 ## Validation
 
@@ -23,6 +23,7 @@ pnpm check:package  # npm pack into a throwaway consumer, type-check the declara
 pnpm test:browser   # headless Chrome: WebGPU vs CPU on 10,000 test sketches, vs PyTorch on 512, device recovery, backend selection
 pnpm site:dev       # builds packages/core, then the Vite dev server for apps/site; the site consumes dist, never src
 pnpm site:smoke     # headless Chrome: load the demo, draw a circle, require a guess list and no console errors
+pnpm site:og        # regenerate apps/site/public/og.png (1200×630 link preview) after a UI change; committed, never built in CI
 ```
 
 Python is always invoked through `uv`. Node 24+ runs TypeScript directly via `--experimental-strip-types`; relative imports in scripts run this way must use explicit `.ts` extensions. Scripts that import `packages/core/src` run under `tsx`.

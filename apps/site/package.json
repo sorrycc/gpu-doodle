@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "tsc --noEmit",
-    "test:smoke": "node tests/smoke.mjs"
+    "test:smoke": "node tests/smoke.mjs",
+    "og": "node scripts/og.mjs"
   },
   "dependencies": {
     "gpu-doodle": "workspace:*"

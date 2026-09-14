@@ -4,7 +4,9 @@
  * list with no console errors. Also exercises the prompt mode once, checks
  * that a Chinese-locale page renders Chinese and that a language choice
  * survives a reload, and checks in a dark-scheme page that the ink stays
- * light on the dark canvas.
+ * light on the dark canvas. Finally checks that the `og:image` tag points
+ * at a 1200×630 PNG that exists under `public/`, so a renamed or missing
+ * preview image fails here instead of showing up as a bare link.
  *
  * Playwright's default locale is en-US, so the first page is the English UI;
  * the assertions use `data-*` hooks where the text depends on the language.
@@ -14,6 +16,7 @@
 import { chromium } from "playwright";
 import { createServer } from "vite";
 import { fileURLToPath } from "node:url";
+import { readFileSync, statSync } from "node:fs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const server = await createServer({
@@ -239,7 +242,33 @@ try {
   const darkPersisted = await sampleThemed();
   await themed.close();
 
+  // Link preview: the static head must name an image that ships with the
+  // site and matches the declared size. PNG stores width and height as
+  // big-endian u32 at bytes 16 and 20 of the IHDR chunk.
+  const html = readFileSync(`${root}/index.html`, "utf8");
+  const imageTag = html.match(/property="og:image"\s+content="([^"]+)"/);
+  const declaredWidth = Number(
+    html.match(/property="og:image:width" content="(\d+)"/)?.[1],
+  );
+  const declaredHeight = Number(
+    html.match(/property="og:image:height" content="(\d+)"/)?.[1],
+  );
+  const imageFile = imageTag && new URL(imageTag[1]).pathname.split("/").pop();
+  const imageBytes = imageFile
+    ? readFileSync(`${root}/public/${imageFile}`)
+    : null;
+  const preview = {
+    url: imageTag?.[1] ?? "",
+    file: imageFile ?? "",
+    declared: [declaredWidth, declaredHeight],
+    actual: imageBytes
+      ? [imageBytes.readUInt32BE(16), imageBytes.readUInt32BE(20)]
+      : null,
+    bytes: imageFile ? statSync(`${root}/public/${imageFile}`).size : 0,
+  };
+
   const result = {
+    preview,
     english,
     afterCircle,
     prompt,
@@ -288,6 +317,20 @@ try {
     );
   if (darkPersisted.theme !== "dark" || darkPersisted.select !== "dark")
     throw new Error("Theme choice did not survive a reload.");
+  if (
+    !/^https:\/\/sorrycc\.github\.io\/gpu-doodle\/[^/]+\.png$/.test(preview.url)
+  )
+    throw new Error(`og:image is not an absolute site URL: ${preview.url}`);
+  if (
+    !preview.actual ||
+    preview.actual[0] !== preview.declared[0] ||
+    preview.actual[1] !== preview.declared[1] ||
+    preview.declared[0] !== 1200 ||
+    preview.declared[1] !== 630
+  )
+    throw new Error(
+      `og:image ${preview.file} is ${preview.actual}, declared ${preview.declared}.`,
+    );
 } finally {
   await browser.close();
   await server.close();

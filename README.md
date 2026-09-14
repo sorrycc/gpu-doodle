@@ -52,9 +52,12 @@ Live at https://sorrycc.github.io/gpu-doodle/. `.github/workflows/pages.yml` reb
 ```sh
 pnpm site:dev      # builds packages/core, then the Vite dev server for apps/site
 pnpm site:smoke    # headless Chrome: draw a circle, expect a ranked guess list
+pnpm site:og       # regenerate public/og.png, the 1200×630 link-preview image
 ```
 
 The site consumes the built package, the same bundle npm ships, so `site:dev`, `site:build` and `site:smoke` build `packages/core` first.
+
+`index.html` carries static Open Graph and Twitter card tags for link previews. Crawlers do not run the language script, so they are in Chinese with an English alternate. The image they point at, `apps/site/public/og.png`, is a committed screenshot from `pnpm site:og` (draws a cat, waits for the guess list); rerun it after a UI change. The smoke test checks the tag names a 1200×630 PNG that exists.
 
 The page draws on a canvas, guesses while you draw, and has a prompt mode in the spirit of the original Quick, Draw!: twenty seconds to draw a named category, next round when the top guess matches. It runs the WebGPU kernel when the browser has one and falls back to the CPU path otherwise.
 
